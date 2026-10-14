@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Replace with YOUR user ID (Firebase console > Authentication > Users > User UID)
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'PASTE_YOUR_ADMIN_UID_HERE';
+    }
+
+    // Visitors can send a message, but only the admin can read or manage them.
+    match /messages/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'message', 'read', 'createdAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string && request.resource.data.email.size() <= 200
+        && request.resource.data.message is string && request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 3000
+        && request.resource.data.read == false
+        && request.resource.data.createdAt == request.time;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Everything else: public can read, only the admin can write.
+    match /{collection}/{doc} {
+      allow read: if collection != 'messages';
+      allow write: if isAdmin();
+    }
+  }
+}

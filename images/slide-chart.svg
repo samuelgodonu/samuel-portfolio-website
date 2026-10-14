@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Placeholder: sensitivity chart">
+<defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#8db4e2" stroke-opacity=".16"/></pattern></defs>
+<rect width="1600" height="900" fill="#0b2545"/><rect width="1600" height="900" fill="url(#g)"/>
+<g fill="none" stroke="#8db4e2" stroke-width="3" stroke-opacity=".9"><path d="M200 700H1400M200 700V160"/><polyline points="260,640 520,560 780,440 1040,300 1300,180" stroke="#ffb703" stroke-width="6"/><g fill="#ffb703" stroke="none"><circle cx="260" cy="640" r="12"/><circle cx="520" cy="560" r="12"/><circle cx="780" cy="440" r="12"/><circle cx="1040" cy="300" r="12"/><circle cx="1300" cy="180" r="12"/></g><polyline points="260,420 520,418 780,420 1040,419 1300,420" stroke-dasharray="10 10"/></g>
+<text x="60" y="840" font-family="Arial,sans-serif" font-size="30" fill="#ffb703">Placeholder: sensitivity chart</text></svg>

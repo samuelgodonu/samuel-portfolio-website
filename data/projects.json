@@ -1,0 +1,68 @@
+[
+  {
+    "id": "aspen-ethylene-isobutane-octane",
+    "title": "Ethylene–isobutane to n-octane",
+    "summary": "A simplified Aspen Plus V11 flowsheet with a stoichiometric reactor, flash separation, a distillation column and a recycle-and-purge loop, plus a reactor-temperature sensitivity study.",
+    "category": "Process simulation",
+    "tags": ["Aspen Plus V11", "Peng–Robinson", "Recycle and purge", "RadFrac", "Sensitivity analysis"],
+    "cover": "images/slide-reactor.svg",
+    "date": "2026",
+    "content": "I built this model to practise how separate pieces of equipment behave together in a plant. Fresh ethylene (100 kmol/h) and isobutane (50 kmol/h) are mixed with the recycle stream, heated, and sent to an RStoic reactor operating at 10 bar. The reactor effluent is cooled and flashed at 20 °C and 10 bar. The liquid goes to a 15-stage RadFrac column (feed on stage 3); the overhead is split 95% recycle and 5% purge, and the bottoms is the n-octane product.\n\nThe reaction is the simplified stoichiometry 2 C2H4 + C4H10 → C8H18, with an ethylene conversion of 80% specified in the reactor block. Property method: Peng–Robinson.\n\nI then ran the reactor outlet temperature at 60, 80, 100, 120 and 140 °C and compared octane flow, flash flows, and the cooler and reboiler duties. Use the interactive explorer to move through the cases.",
+    "results": [
+      "n-octane component flow stays at about 49.74 kmol/h in all five cases.",
+      "n-octane mole purity is about 0.9977 in every case.",
+      "Cooler duty grows from −93 kW at 60 °C to −523 kW at 140 °C (more heat removed as the outlet gets hotter).",
+      "Flash vapour (about 9.84 kmol/h) and liquid (about 70.29 kmol/h) barely change.",
+      "Reboiler duty stays near 1192.7 kW, heater near 514.7 kW and condenser near −233.65 kW."
+    ],
+    "limitations": "The reactor uses a specified 80% conversion, not temperature-dependent kinetics, so this study shows how the simulated process responds, not how temperature affects the real reaction. The reaction is a simplified representation that has not been validated against experimental data. Results also depend on the property method, recycle configuration and separation specifications.",
+    "github": "https://github.com/samuelgodonu",
+    "demo": "simulation.html",
+    "files": [
+      { "label": "Sensitivity data (CSV)", "url": "data/temperature-study.csv" },
+      { "label": "Sensitivity data (JSON)", "url": "data/temperature-study.json" }
+    ],
+    "images": [],
+    "featured": true,
+    "order": 1,
+    "published": true
+  },
+  {
+    "id": "pkreatif-designs",
+    "title": "P.kreatif Designs",
+    "summary": "A creative design practice I founded in 2020, producing graphics and visual identity work.",
+    "category": "Design and leadership",
+    "tags": ["Graphic design", "Founder"],
+    "cover": "images/slide-flash.svg",
+    "date": "2020 – present",
+    "content": "P.kreatif Designs is the creative practice I started in September 2020. Design thinking sits alongside my engineering training: both are about understanding a problem before choosing a solution.\n\nAdd selected design work and case studies here from the dashboard.",
+    "results": [],
+    "limitations": "",
+    "github": "",
+    "demo": "https://sites.google.com/view/pkreatif-designs/home",
+    "files": [],
+    "images": [],
+    "featured": false,
+    "order": 2,
+    "published": true
+  },
+  {
+    "id": "the-builders-circle",
+    "title": "The Builders Circle",
+    "summary": "A student-led community I co-founded in February 2026, where I serve as Assistant Project and Innovation Lead and Research and Insight Lead.",
+    "category": "Design and leadership",
+    "tags": ["Co-founder", "Leadership", "Research"],
+    "cover": "images/slide-column.svg",
+    "date": "2026 – present",
+    "content": "I co-founded The Builders Circle in February 2026. My roles include Assistant Project and Innovation Lead and Research and Insight Lead.\n\nAdd the community's projects, events and outcomes here from the dashboard.",
+    "results": [],
+    "limitations": "",
+    "github": "",
+    "demo": "",
+    "files": [],
+    "images": [],
+    "featured": false,
+    "order": 3,
+    "published": true
+  }
+]

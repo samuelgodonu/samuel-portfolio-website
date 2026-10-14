@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2545">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>try{var t=localStorage.getItem("sg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Temperature study explorer | Samuel Godonu</title>
+  <meta name="description" content="Interactive explorer for an Aspen Plus sensitivity study of reactor outlet temperature in a simplified ethylene–isobutane to n-octane process.">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap">
+      <a href="index.html" class="logo">Samuel<span>.</span>Godonu</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav id="menu" aria-label="Main">
+        <a href="index.html#work">Work</a>
+        <a href="simulation.html">Simulation</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#hackathons">Hackathons</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <button class="theme-btn" data-theme-toggle type="button">Light theme</button>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page">
+    <div class="wrap">
+      <a class="crumb" href="project.html?id=aspen-ethylene-isobutane-octane">← Project write-up</a>
+      <h1>Temperature study explorer</h1>
+      <p class="summary">Reactor outlet temperature versus plant duties and flows, from my Aspen Plus V11 model of a simplified ethylene–isobutane to n-octane process.</p>
+
+      <div class="note">
+        <h2>Read this before the charts</h2>
+        <p>The reactor uses a <strong>specified 80% ethylene conversion</strong>, not temperature-dependent kinetics. That is why octane output does not move. This explorer shows how the <em>simulated plant</em> responds; it does not show how temperature affects the real reaction.</p>
+      </div>
+
+      <div class="sim-grid">
+        <section class="frame panel" style="padding:1.4rem" aria-labelledby="ctl">
+          <h2 id="ctl">Reactor outlet temperature</h2>
+          <div class="big"><span id="t-val">100</span><small>°C</small></div>
+          <span class="badge sim" id="t-badge">Simulated case</span>
+          <label for="t-range" class="muted" style="font-weight:400">Slide between 60 and 140 °C</label>
+          <input id="t-range" type="range" min="60" max="140" step="1" value="100">
+          <div class="ticks-row" aria-hidden="true"><span>60</span><span>80</span><span>100</span><span>120</span><span>140</span></div>
+          <div class="case-btns" id="case-btns" role="group" aria-label="Jump to a simulated case"></div>
+          <dl class="readout" id="sim-readout"></dl>
+          <p class="muted" style="font-size:.9rem;margin-top:1rem">Only 60, 80, 100, 120 and 140 °C were simulated. Values in between are straight-line interpolation and are labelled as such.</p>
+        </section>
+
+        <section class="frame panel" aria-labelledby="chart-h">
+          <h2 id="chart-h">Trend across the five cases</h2>
+          <label for="metric-sel">Quantity
+            <select id="metric-sel"></select>
+          </label>
+          <div class="chart-box" style="margin-top:1rem"><canvas id="chart" role="img" aria-label="Line chart of the selected quantity against reactor outlet temperature"></canvas></div>
+          <p class="muted" id="chart-note" style="font-size:.9rem;margin:.8rem 0 0"></p>
+        </section>
+      </div>
+
+      <section class="frame panel" style="margin-top:2rem" aria-labelledby="tbl-h">
+        <h2 id="tbl-h">All results</h2>
+        <div class="scroll-x"><table id="tbl"></table></div>
+        <div class="linkrow">
+          <a class="btn small" href="data/temperature-study.csv" download>Download CSV</a>
+          <a class="btn small" href="data/temperature-study.json" download>Download JSON</a>
+        </div>
+        <p class="muted" style="font-size:.9rem;margin:0">Sign convention: negative duty means heat removed from the stream (Aspen Plus convention).</p>
+      </section>
+
+      <section class="frame panel" style="margin-top:2rem" aria-labelledby="fs-h">
+        <h2 id="fs-h">Flowsheet. Select any equipment.</h2>
+        <div class="flow-wrap">
+          <svg viewBox="0 0 960 370" role="group" aria-label="Process flowsheet. Equipment can be selected for details.">
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs>
+            <!-- feeds -->
+            <path class="pipe" d="M10 165H150" marker-end="url(#arr)"/><path class="pipe" d="M10 195H150" marker-end="url(#arr)"/>
+            <text class="svgtxt m" x="10" y="155">Ethylene 100 kmol/h</text>
+            <text class="svgtxt m" x="10" y="218">Isobutane 50 kmol/h</text>
+            <!-- main line -->
+            <path class="pipe" d="M220 180H260" marker-end="url(#arr)"/>
+            <path class="pipe" d="M340 180H380" marker-end="url(#arr)"/>
+            <path class="pipe" d="M460 180H500" marker-end="url(#arr)"/>
+            <path class="pipe" d="M580 180H620" marker-end="url(#arr)"/>
+            <path class="pipe" d="M700 190H760" marker-end="url(#arr)"/>
+            <text class="svgtxt m" x="706" y="182">liquid</text>
+            <!-- vapour stub -->
+            <path class="pipe" d="M660 148V100"/><text class="svgtxt m" x="668" y="112">vapour</text>
+            <!-- recycle / purge / product -->
+            <path class="pipe rec" d="M805 110V50M805 50H185V148" marker-end="url(#arr)"/>
+            <text class="svgtxt m" x="470" y="40">recycle 95%</text>
+            <path class="pipe" d="M817 50H930" marker-end="url(#arr)"/><text class="svgtxt m" x="860" y="38">purge 5%</text>
+            <path class="pipe" d="M805 250V325" marker-end="url(#arr)"/><text class="svgtxt m" x="815" y="305">n-octane product</text>
+            <!-- equipment -->
+            <g class="eq" tabindex="0" role="button" aria-pressed="false" data-eq="mixer"><rect class="vessel" x="150" y="148" width="70" height="64" rx="4"/><text class="svgtxt" x="185" y="185" text-anchor="middle">M-101</text></g>
+            <g class="eq" tabindex="0" role="button" aria-pressed="false" data-eq="heater"><rect class="vessel" x="260" y="148" width="80" height="64" rx="4"/><text class="svgtxt" x="300" y="185" text-anchor="middle">Heater</text></g>
+            <g class="eq" tabindex="0" role="button" aria-pressed="false" data-eq="reactor"><rect class="vessel" x="380" y="148" width="80" height="64" rx="12"/><text class="svgtxt" x="420" y="185" text-anchor="middle">R-101</text></g>
+            <g class="eq" tabindex="0" role="button" aria-pressed="false" data-eq="cooler"><rect class="vessel" x="500" y="148" width="80" height="64" rx="4"/><text class="svgtxt" x="540" y="185" text-anchor="middle">Cooler</text></g>
+            <g class="eq" tabindex="0" role="button" aria-pressed="false" data-eq="flash"><rect class="vessel" x="620" y="148" width="80" height="64" rx="26"/><text class="svgtxt" x="660" y="185" text-anchor="middle">V-101</text></g>
+            <g class="eq" tabindex="0" role="button" aria-pressed="false" data-eq="column"><rect class="vessel" x="760" y="110" width="90" height="140" rx="16"/><text class="svgtxt" x="805" y="185" text-anchor="middle">T-101</text></g>
+            <g class="eq" tabindex="0" role="button" aria-pressed="false" data-eq="splitter"><circle class="vessel" cx="805" cy="50" r="13"/><text class="svgtxt" x="805" y="76" text-anchor="middle">S-101</text></g>
+          </svg>
+        </div>
+        <div id="eq-info" class="note" aria-live="polite"><p class="muted" style="margin:0">Select a piece of equipment to see what it does in this model and which results belong to it.</p></div>
+        <p class="muted" style="font-size:.88rem;margin:0">Schematic only. See the Aspen Plus file for the exact stream connections, including where the flash vapour goes.</p>
+      </section>
+    </div>
+  </main>
+  <footer><div class="wrap"><span>© <span id="year"></span> Samuel Godonu</span><span>Aspen Plus V11 · Peng–Robinson · educational model, not a validated design</span></div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/simulation.js"></script>
+</body>
+</html>

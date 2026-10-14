@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dashboard | Samuel Godonu</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script>try{var t=localStorage.getItem("sg-theme");document.documentElement.dataset.theme=t||"dark"}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <!-- Shown until Firebase keys are added to js/config.js -->
+  <div id="setup" class="frame center-card" hidden>
+    <h1>Dashboard setup needed</h1>
+    <p>The dashboard needs a Firebase project. Until then, the website reads the files in the <code>data</code> folder.</p>
+    <ol>
+      <li>Create a Firebase project and a Web app.</li>
+      <li>Paste its config into <code>js/config.js</code>.</li>
+      <li>Turn on Email/Password sign-in and create Firestore.</li>
+      <li>Publish the rules from <code>firestore.rules</code>.</li>
+    </ol>
+    <p class="muted">Step-by-step instructions are in <code>README.md</code>.</p>
+  </div>
+
+  <div id="login" class="frame center-card" hidden>
+    <h1>Dashboard sign in</h1>
+    <form id="login-form">
+      <label>Email <input type="email" name="email" required autocomplete="username"></label>
+      <label>Password <input type="password" name="password" required autocomplete="current-password"></label>
+      <button class="btn primary" type="submit">Sign in</button>
+      <p class="form-status err-text" id="login-err" role="alert"></p>
+    </form>
+    <p style="margin-top:1rem"><a href="../index.html">Back to the website</a></p>
+  </div>
+
+  <div id="app" class="app" hidden>
+    <aside class="side">
+      <a class="logo" href="../index.html" target="_blank" rel="noopener">Samuel<span>.</span>Godonu</a>
+      <nav id="tabs" aria-label="Dashboard sections" style="display:contents"></nav>
+      <div class="sp"></div>
+      <button class="tab" id="export-btn" type="button">Download backup</button>
+      <button class="tab" id="signout-btn" type="button">Sign out</button>
+    </aside>
+    <main class="main" id="view" tabindex="-1"></main>
+  </div>
+
+  <dialog id="dlg" aria-labelledby="dlg-title"></dialog>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+[
+  { "id": "a1", "title": "Certificate of Excellence, NEXUS 3.0 Hackathon", "issuer": "NEXUS", "year": "", "order": 1, "published": true },
+  { "id": "a2", "title": "Design Thinking", "issuer": "HP LIFE", "year": "", "order": 2, "published": true },
+  { "id": "a3", "title": "Critical Thinking in the AI Era", "issuer": "HP LIFE", "year": "", "order": 3, "published": true },
+  { "id": "a4", "title": "Effective Leadership", "issuer": "HP LIFE", "year": "", "order": 4, "published": true }
+]

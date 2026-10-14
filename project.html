@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2545">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>try{var t=localStorage.getItem("sg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Project | Samuel Godonu</title>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap">
+      <a href="index.html" class="logo">Samuel<span>.</span>Godonu</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav id="menu" aria-label="Main">
+        <a href="index.html#work">Work</a>
+        <a href="simulation.html">Simulation</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#hackathons">Hackathons</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <button class="theme-btn" data-theme-toggle type="button">Light theme</button>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page">
+    <div class="wrap" id="project">
+      <p class="muted">Loading project…</p>
+    </div>
+  </main>
+  <footer><div class="wrap"><span>© <span id="year"></span> Samuel Godonu</span><a href="index.html">Back to home</a></div></footer>
+  <script type="module" src="js/project.js"></script>
+</body>
+</html>

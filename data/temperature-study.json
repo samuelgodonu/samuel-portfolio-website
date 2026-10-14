@@ -1,0 +1,118 @@
+{
+  "title": "Sensitivity analysis for production of n-octane using ethylene and isobutane",
+  "xLabel": "Reactor outlet temperature",
+  "xUnit": "°C",
+  "temperatures": [
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "metrics": [
+    {
+      "key": "octane",
+      "label": "n-Octane component flow",
+      "unit": "kmol/h",
+      "decimals": 3,
+      "values": [
+        49.73506685,
+        49.73511369,
+        49.73538356,
+        49.73510704,
+        49.73510804
+      ]
+    },
+    {
+      "key": "purity",
+      "label": "n-Octane mole purity",
+      "unit": "mole fraction",
+      "decimals": 5,
+      "values": [
+        0.997656732,
+        0.997656732,
+        0.997656732,
+        0.997656733,
+        0.99765673
+      ]
+    },
+    {
+      "key": "vapor",
+      "label": "Flash vapour flow",
+      "unit": "kmol/h",
+      "decimals": 3,
+      "values": [
+        9.840673165,
+        9.840666411,
+        9.840635687,
+        9.840667134,
+        9.840666977
+      ]
+    },
+    {
+      "key": "liquid",
+      "label": "Flash liquid flow",
+      "unit": "kmol/h",
+      "decimals": 3,
+      "values": [
+        70.29026685,
+        70.29031369,
+        70.29058356,
+        70.29030704,
+        70.29030804
+      ]
+    },
+    {
+      "key": "heater",
+      "label": "Heater duty",
+      "unit": "kW",
+      "decimals": 1,
+      "values": [
+        514.696504,
+        514.6965208,
+        514.6965208,
+        514.6965166,
+        514.6965166
+      ]
+    },
+    {
+      "key": "cooler",
+      "label": "Cooler duty",
+      "unit": "kW",
+      "decimals": 1,
+      "values": [
+        -93.31094406,
+        -189.3884356,
+        -290.7530662,
+        -400.3066846,
+        -522.5503212
+      ]
+    },
+    {
+      "key": "reboiler",
+      "label": "Reboiler duty",
+      "unit": "kW",
+      "decimals": 1,
+      "values": [
+        1192.669533,
+        1192.671409,
+        1192.664848,
+        1192.671078,
+        1192.671095
+      ]
+    },
+    {
+      "key": "condenser",
+      "label": "Condenser duty",
+      "unit": "kW",
+      "decimals": 2,
+      "values": [
+        -233.650882,
+        -233.6505813,
+        -233.6506735,
+        -233.6506115,
+        -233.6505868
+      ]
+    }
+  ]
+}

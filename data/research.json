@@ -1,0 +1,13 @@
+[
+  {
+    "id": "r1",
+    "title": "Reactor outlet temperature sensitivity of a simplified ethylene–isobutane to n-octane process",
+    "type": "Simulation study",
+    "year": "2026",
+    "status": "Completed",
+    "abstract": "Five reactor outlet temperatures (60–140 °C) were simulated in Aspen Plus V11 with a specified 80% ethylene conversion. n-Octane flow and purity, flash flows and reboiler duty were essentially unchanged, while cooler duty rose from about 93 kW to about 523 kW of heat removed. Because conversion was specified rather than kinetically modelled, the study describes the model's response and does not establish a real kinetic effect.",
+    "link": "project.html?id=aspen-ethylene-isobutane-octane",
+    "order": 1,
+    "published": true
+  }
+]
