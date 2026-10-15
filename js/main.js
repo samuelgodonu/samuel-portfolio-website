@@ -1,7 +1,6 @@
 import { load, loadSettings, getFirebase } from './data.js';
 import { $, $$, esc, paras, img, safeUrl } from './util.js';
 import { initShell, reveal, watchSections } from './shell.js';
-import { study, at, sgn } from './study.js';
 import { openLightbox } from './lightbox.js';
 
 initShell();
@@ -23,17 +22,27 @@ function applySettings(s) {
   $('#socials').innerHTML = soc.map(([k, l]) => `<li><a href="${esc(safeUrl(s[k]))}" target="_blank" rel="noopener"><span>${l}</span><span aria-hidden="true">↗</span></a></li>`).join('');
   $('#hero-social').innerHTML = soc.slice(0, 3).map(([k, l]) => `<a href="${esc(safeUrl(s[k]))}" target="_blank" rel="noopener">${l} ↗</a>`).join('');
 
-  if (s.portrait) {
-    const tag = `<img src="${esc(img(s.portrait, 900))}" alt="Portrait of ${esc(s.name)}">`;
-    $('#hero-portrait').innerHTML = tag; $('#about-portrait').innerHTML = tag;
-  }
+  setPortrait(s);
   $('#story').innerHTML = paras(s.story || s.bio);
   const now = [['Learning', s.learning], ['Building', s.building], ['Reading', s.reading]].filter(n => n[1]);
   $('#now').innerHTML = now.map(([k, v]) => `<div><b>${k}</b>${esc(v)}</div>`).join('');
   $('#facts').innerHTML = [['University', s.university], ['Location', s.location], ['Memberships', s.memberships]].filter(f => f[1]).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
 
   roles((s.roles || '').split(',').map(x => x.trim()).filter(Boolean));
-  marquee([...(s.memberships || '').split(',').map(x => x.trim()).filter(Boolean)]);
+}
+
+/* ---------- portrait: shows your photo, keeps the placeholder if the file is missing ---------- */
+function setPortrait(s) {
+  if (!s.portrait) return;
+  ['#hero-portrait', '#about-portrait'].forEach(sel => {
+    const box = $(sel);
+    const im = new Image();
+    im.alt = `Portrait of ${s.name}`; im.decoding = 'async';
+    im.style.objectPosition = s.portraitFocus || '50% 25%';
+    im.onload = () => box.replaceChildren(im);
+    im.onerror = () => console.warn(`Portrait not found: ${s.portrait}`);
+    im.src = img(s.portrait, 900);
+  });
 }
 
 /* ---------- hero: typed roles + tilt ---------- */
@@ -67,17 +76,30 @@ function roles(list) {
   box.addEventListener('pointerleave', () => (card.style.transform = ''));
 })();
 
-function marquee(items) {
+function marquee(societies, fallbackNames) {
+  // Prefer the societies list (name + logo). Fall back to the plain memberships text.
+  const items = societies.length ? societies : fallbackNames.map(name => ({ name }));
   if (!items.length) return;
-  const wrap = $('#affil'); wrap.hidden = false;
-  const one = items.map(i => `<span>${esc(i)}</span>`).join('');
-  $('#marq-track').innerHTML = reduce ? one : one + one + one + one;
-  if (reduce) $('#marq-track').style.cssText = 'flex-wrap:wrap;justify-content:center;width:auto;padding-inline:1rem';
-  $('#marq-sr').textContent = 'Student member of ' + items.join(', ');
-  $('#marq-sr').classList.remove('hp'); $('#marq-sr').style.cssText = 'position:absolute;left:-9999px';
+  const initials = n => (n.match(/[A-Z]/g) || [n[0]]).join('').slice(0, 3);
+  const one = items.map(i => `
+    <span class="soc"><span class="soc-logo">${i.logo ? `<img src="${esc(img(i.logo, 200))}" alt="" loading="lazy">` : `<b>${esc(initials(i.name))}</b>`}</span><span>${esc(i.name)}</span></span>`).join('');
+  const track = $('#marq-track');
+  // if a logo file is missing, show the initials inside the same circle
+  track.addEventListener('error', e => {
+    if (e.target.tagName !== 'IMG') return;
+    const name = e.target.closest('.soc')?.lastElementChild.textContent || '';
+    e.target.parentElement.innerHTML = `<b>${esc(initials(name))}</b>`;
+  }, true);
+  $('#affil').hidden = false;
+  track.innerHTML = reduce ? one : one.repeat(6);
+  if (reduce) track.style.cssText = 'flex-wrap:wrap;justify-content:center;width:auto;padding-inline:1rem';
+  else track.style.setProperty('--dur', `${items.length * 9}s`);
+  const sr = $('#marq-sr');
+  sr.textContent = 'Student member of ' + items.map(i => i.fullName || i.name).join(', ');
+  sr.classList.remove('hp'); sr.style.cssText = 'position:absolute;left:-9999px';
 }
 
-/* ---------- carousel ---------- */
+/* ---------- carousel: advances by itself every 5 seconds ---------- */
 function carousel(slides) {
   const root = $('#carousel'), sec = $('#highlights');
   if (!slides.length) { sec.hidden = true; return; }
@@ -88,14 +110,9 @@ function carousel(slides) {
         <div class="car-cap"><h3>${esc(s.title)}</h3>${s.subtitle ? `<p>${esc(s.subtitle)}</p>` : ''}
         ${s.link ? `<a class="btn small" href="${esc(safeUrl(s.link))}">${esc(s.linkLabel || 'View')}</a>` : ''}</div>
       </li>`).join('')}</ul></div>
-    <div class="car-ctrl">
-      <button type="button" data-a="prev" aria-label="Previous slide">Prev</button>
-      <button type="button" data-a="next" aria-label="Next slide">Next</button>
-      <button type="button" data-a="pause" aria-pressed="false">Pause</button>
-      <div class="dots">${slides.map((_, i) => `<button type="button" data-i="${i}" aria-label="Go to slide ${i + 1}"></button>`).join('')}</div>
-    </div>`;
-  const track = $('.car-track', root), items = $$('.car-slide', root), dots = $$('.dots button', root), pauseBtn = $('[data-a="pause"]', root);
-  let idx = 0, timer = null, paused = reduce, hovering = false;
+    ${slides.length > 1 ? `<div class="car-ctrl"><div class="dots" role="group" aria-label="Choose slide">${slides.map((_, i) => `<button type="button" data-i="${i}" aria-label="Go to slide ${i + 1}"></button>`).join('')}</div></div>` : ''}`;
+  const track = $('.car-track', root), items = $$('.car-slide', root), dots = $$('.dots button', root);
+  let idx = 0, timer = null, hovering = false;
   const go = n => {
     idx = (n + slides.length) % slides.length;
     track.style.transform = `translateX(-${idx * 100}%)`;
@@ -103,31 +120,30 @@ function carousel(slides) {
     dots.forEach((d, i) => d.setAttribute('aria-current', String(i === idx)));
   };
   const stop = () => { clearInterval(timer); timer = null; };
-  const start = () => { stop(); if (!paused && !hovering && slides.length > 1) timer = setInterval(() => go(idx + 1), 5500); };
-  const sync = () => { pauseBtn.textContent = paused ? 'Play' : 'Pause'; pauseBtn.setAttribute('aria-pressed', String(paused)); };
-  root.addEventListener('click', e => {
-    const b = e.target.closest('button'); if (!b) return;
-    if (b.dataset.a === 'prev') go(idx - 1); else if (b.dataset.a === 'next') go(idx + 1);
-    else if (b.dataset.a === 'pause') { paused = !paused; sync(); } else if (b.dataset.i) go(Number(b.dataset.i));
-    start();
-  });
-  root.addEventListener('mouseenter', () => { hovering = true; start(); });
+  const start = () => { stop(); if (!reduce && !hovering && slides.length > 1) timer = setInterval(() => go(idx + 1), 5000); };
+  root.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) { go(Number(b.dataset.i)); start(); } });
+  root.addEventListener('mouseenter', () => { hovering = true; stop(); });
   root.addEventListener('mouseleave', () => { hovering = false; start(); });
-  root.addEventListener('focusin', () => { hovering = true; start(); });
+  root.addEventListener('focusin', () => { hovering = true; stop(); });
   root.addEventListener('focusout', () => { hovering = false; start(); });
-  root.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(idx - 1); if (e.key === 'ArrowRight') go(idx + 1); });
+  root.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') { go(idx - 1); start(); } if (e.key === 'ArrowRight') { go(idx + 1); start(); } });
   let x0 = null; const vp = $('.car-viewport', root);
   vp.addEventListener('pointerdown', e => { x0 = e.clientX; });
   vp.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 50) { go(idx + (dx < 0 ? 1 : -1)); start(); } });
   vp.addEventListener('pointercancel', () => { x0 = null; });
   document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
-  sync(); go(0); start();
+  go(0); start();
 }
 
 /* ---------- projects: search + filter ---------- */
-function projects(items) {
+function projects(items, upcoming = []) {
   const grid = $('#project-grid');
-  if (!items.length) { hideSection('work'); return; }
+  if (!items.length && !upcoming.length) { hideSection('work'); return; }
+  if (upcoming.length) {
+    const soon = $('#project-soon'); soon.hidden = false;
+    soon.innerHTML = `<span>More fields coming soon:</span>` + upcoming.map(u => `<span class="chip-soon">${esc(u)}<em>soon</em></span>`).join('');
+  }
+  if (!items.length) { $('#project-search').closest('.toolbar').hidden = true; return; }
   const cats = ['All', ...new Set(items.map(p => p.category).filter(Boolean))];
   let cat = 'All', q = '';
   const draw = () => {
@@ -158,39 +174,6 @@ function projects(items) {
   } else f.hidden = true;
   $('#project-search').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); draw(); });
   draw();
-}
-
-/* ---------- interactive simulation widget ---------- */
-async function simWidget() {
-  try {
-    const d = await study(), T = d.temperatures;
-    const m = k => d.metrics.find(x => x.key === k);
-    const cool = m('cooler'), oct = m('octane'), reb = m('reboiler');
-    const mags = cool.values.map(Math.abs), lo = Math.min(...mags), hi = Math.max(...mags);
-    const X = t => 24 + ((t - T[0]) / (T[T.length - 1] - T[0])) * 272;
-    const Y = v => 100 - ((Math.abs(v) - lo) / (hi - lo)) * 76;
-    const pts = T.map((t, i) => `${X(t).toFixed(1)},${Y(cool.values[i]).toFixed(1)}`).join(' ');
-    const svg = $('#sw-spark');
-    svg.innerHTML = `<line class="axis" x1="24" y1="108" x2="296" y2="108"/>
-      <polyline class="ln" points="${pts}"/>
-      ${T.map((t, i) => `<circle cx="${X(t).toFixed(1)}" cy="${Y(cool.values[i]).toFixed(1)}" r="3.5" fill="var(--ink)"/>`).join('')}
-      <circle class="dotm" id="sw-dot" r="7" cx="0" cy="0"/>
-      <text x="24" y="10">Heat removed by cooler (kW)</text>
-      <text x="24" y="120">${T[0]} °C</text><text x="296" y="120" text-anchor="end">${T[T.length - 1]} °C</text>`;
-    const range = $('#sw-range'), dot = $('#sw-dot');
-    const row = (l, v, u) => `<div><dt>${l}</dt><dd><b>${v}</b> ${u}</dd></div>`;
-    const upd = () => {
-      const t = Number(range.value);
-      $('#sw-val').textContent = t;
-      const exact = T.includes(t);
-      $('#sw-badge').textContent = exact ? 'Simulated case' : 'Interpolated, not simulated';
-      $('#sw-badge').classList.toggle('sim', exact);
-      const c = at(cool, T, t);
-      dot.setAttribute('cx', X(t).toFixed(1)); dot.setAttribute('cy', Y(c).toFixed(1));
-      $('#sw-readout').innerHTML = row('Cooler duty', sgn(cool, c), 'kW') + row('n-Octane flow', sgn(oct, at(oct, T, t)), 'kmol/h') + row('Reboiler duty', sgn(reb, at(reb, T, t)), 'kW');
-    };
-    range.addEventListener('input', upd); upd();
-  } catch (e) { console.warn(e); hideSection('simulation'); }
 }
 
 /* ---------- experience tabs ---------- */
@@ -231,34 +214,50 @@ function skills(items) {
       ${LEVEL[s.level] ? `<div class="meter" role="img" aria-label="${esc(s.level)}"><i style="--w:${LEVEL[s.level]}%"></i></div>` : ''}</div>`).join('')}</div>`).join('');
 }
 
-/* ---------- research / hackathons / gallery ---------- */
+/* ---------- research (shows "coming soon" until you add one) ---------- */
 function research(items) {
-  if (!items.length) { hideSection('research'); return; }
   showSection('research');
-  $('#research-list').innerHTML = items.map(r => `
+  $('#research-list').innerHTML = items.length ? items.map(r => `
     <li class="reveal"><div class="meta">${esc(r.year || '')}<br>${esc(r.type || '')}${r.status ? `<br>${esc(r.status)}` : ''}</div>
-    <div><h3>${r.link ? `<a href="${esc(safeUrl(r.link))}">${esc(r.title)}</a>` : esc(r.title)}</h3>${r.abstract ? `<p>${esc(r.abstract)}</p>` : ''}</div></li>`).join('');
+    <div><h3>${r.link ? `<a href="${esc(safeUrl(r.link))}">${esc(r.title)}</a>` : esc(r.title)}</h3>${r.abstract ? `<p>${esc(r.abstract)}</p>` : ''}</div></li>`).join('')
+    : `<li class="reveal"><div class="meta">Coming soon</div><div><h3>Research is on the way</h3><p>Studies, reports and literature work will be posted here.</p></div></li>`;
 }
+
+/* ---------- hackathons + awards: rounded cards with an image slot ---------- */
+const initialsOf = t => (String(t).match(/\b[A-Za-z0-9]/g) || ['·']).slice(0, 2).join('').toUpperCase();
+const card = ({ title, link, image, meta, result, text, linkLabel }) => `
+  <article class="frame cardx reveal">
+    <div class="cardx-img">${image ? `<img src="${esc(img(image, 800))}" alt="" loading="lazy">` : `<b aria-hidden="true">${esc(initialsOf(title))}</b>`}</div>
+    <div class="cardx-body">
+      <h3>${esc(title)}</h3>
+      ${meta ? `<span class="meta">${esc(meta)}</span>` : ''}
+      ${result ? `<span class="result">${esc(result)}</span>` : ''}
+      ${text ? `<p>${esc(text)}</p>` : ''}
+      ${link ? `<p><a href="${esc(safeUrl(link))}" target="_blank" rel="noopener">${esc(linkLabel)} ↗</a></p>` : ''}
+    </div>
+  </article>`;
 
 function hackathons(items, awards) {
   if (!items.length && !awards.length) { hideSection('hackathons'); return; }
   showSection('hackathons');
-  $('#hack-grid').innerHTML = items.map(h => `
-    <article class="frame reveal">${h.image ? `<img src="${esc(img(h.image, 800))}" alt="" loading="lazy">` : ''}
-      <h3>${h.link ? `<a href="${esc(safeUrl(h.link))}" target="_blank" rel="noopener">${esc(h.name)}</a>` : esc(h.name)}</h3>
-      <p class="muted mono" style="margin:.3rem 0 0;font-size:.88rem">${[h.date, h.role].filter(Boolean).map(esc).join(' · ')}</p>
-      ${h.result ? `<span class="result">${esc(h.result)}</span>` : ''}
-      ${h.description ? `<p class="muted" style="margin:0">${esc(h.description)}</p>` : ''}</article>`).join('');
-  $('#awards-list').innerHTML = awards.map(a => `<li class="reveal"><span>${esc(a.title)}</span><span>${[a.issuer, a.year].filter(Boolean).map(esc).join(' · ')}</span></li>`).join('');
+  $('#hack-h').hidden = !items.length; $('#award-h').hidden = !awards.length;
+  $('#hack-grid').innerHTML = items.map(h => card({ title: h.name, link: h.link, image: h.image, meta: [h.date, h.role].filter(Boolean).join(' · '), result: h.result, text: h.description, linkLabel: 'Read more' })).join('');
+  $('#awards-grid').innerHTML = awards.map(a => card({ title: a.title, link: a.link, image: a.image, meta: [a.issuer, a.year].filter(Boolean).join(' · '), text: a.description, linkLabel: 'View certificate' })).join('');
 }
 
+/* ---------- gallery: albums, and a title on every picture ---------- */
 function gallery(items) {
   if (!items.length) { hideSection('gallery'); return; }
   showSection('gallery');
   const grid = $('#gallery-grid'); let current = items;
+  const title = g => g.title || g.caption || '';
   const draw = album => {
     current = items.filter(g => album === 'All' || g.album === album);
-    grid.innerHTML = current.map((g, i) => `<button type="button" data-i="${i}" aria-label="Enlarge: ${esc(g.caption || 'picture ' + (i + 1))}"><img src="${esc(img(g.image, 700))}" alt="${esc(g.caption || '')}" loading="lazy"></button>`).join('');
+    grid.innerHTML = current.map((g, i) => `
+      <button type="button" data-i="${i}" aria-label="Enlarge: ${esc(title(g) || 'picture ' + (i + 1))}">
+        <img src="${esc(img(g.image, 700))}" alt="${esc(title(g))}" loading="lazy">
+        ${title(g) || g.album ? `<span class="tile-cap">${title(g) ? `<b>${esc(title(g))}</b>` : ''}${g.album ? `<small>${esc(g.album)}</small>` : ''}</span>` : ''}
+      </button>`).join('');
   };
   const albums = ['All', ...new Set(items.map(g => g.album).filter(Boolean))];
   const f = $('#gallery-filters');
@@ -266,7 +265,10 @@ function gallery(items) {
     f.innerHTML = albums.map((c, i) => `<button class="chip-btn" type="button" aria-pressed="${i === 0}">${esc(c)}</button>`).join('');
     f.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('button', f).forEach(x => x.setAttribute('aria-pressed', String(x === b))); draw(b.textContent); });
   } else f.hidden = true;
-  grid.addEventListener('click', e => { const b = e.target.closest('button'); if (b) openLightbox(current, Number(b.dataset.i), b); });
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    openLightbox(current.map(g => ({ image: g.image, caption: title(g), sub: [g.album, g.description].filter(Boolean).join(' · ') })), Number(b.dataset.i), b);
+  });
   draw('All');
 }
 
@@ -294,11 +296,12 @@ function contact(settings) {
 
 /* ---------- boot ---------- */
 (async function () {
-  const [settings, slides, projs, tl, sk, res, hacks, awards, gal] = await Promise.all([
-    loadSettings(), load('slides'), load('projects'), load('timeline'), load('skills'), load('research'), load('hackathons'), load('awards'), load('gallery')
+  const [settings, slides, projs, tl, sk, res, hacks, awards, gal, socs] = await Promise.all([
+    loadSettings(), load('slides'), load('projects'), load('timeline'), load('skills'), load('research'), load('hackathons'), load('awards'), load('gallery'), load('societies')
   ]);
   applySettings(settings);
-  carousel(slides); projects(projs); simWidget();
+  marquee(socs, (settings.memberships || '').split(',').map(x => x.trim()).filter(Boolean));
+  carousel(slides); projects(projs, (settings.upcoming || '').split(',').map(x => x.trim()).filter(Boolean));
   experience(tl); skills(sk); research(res); hackathons(hacks, awards); gallery(gal);
   contact(settings);
   reveal(); watchSections();

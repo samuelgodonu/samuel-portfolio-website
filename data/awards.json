@@ -1,6 +1,46 @@
 [
-  { "id": "a1", "title": "Certificate of Excellence, NEXUS 3.0 Hackathon", "issuer": "NEXUS", "year": "", "order": 1, "published": true },
-  { "id": "a2", "title": "Design Thinking", "issuer": "HP LIFE", "year": "", "order": 2, "published": true },
-  { "id": "a3", "title": "Critical Thinking in the AI Era", "issuer": "HP LIFE", "year": "", "order": 3, "published": true },
-  { "id": "a4", "title": "Effective Leadership", "issuer": "HP LIFE", "year": "", "order": 4, "published": true }
+  {
+    "id": "a1",
+    "title": "Certificate of Excellence, NEXUS 3.0 Hackathon",
+    "issuer": "NEXUS",
+    "year": "May, 2026",
+    "order": 1,
+    "published": true,
+    "description": "Certificate of Excellence awarded for my team's performance in the NEXUS 3.0 Hackathon, a student-led competition focused on innovative solutions in engineering and technology.",
+    "image": "images/nexus.png",
+    "link": "https://drive.google.com/drive/folders/1DkKD3qHcgnyrbk4xNBXQKa22MkKL4l9w"
+  },
+  {
+    "id": "a2",
+    "title": "Design Thinking",
+    "issuer": "HP LIFE",
+    "year": "June, 2026.",
+    "order": 2,
+    "published": true,
+    "description": "certificate of completion for the Design Thinking course offered by HP LIFE, focusing on creative problem-solving and innovative design approaches.",
+    "image": "images/design thinking.png",
+    "link": "https://www.life-global.org/certificate/2e5e90aa-077e-4ded-bf75-24f1e3e4ffeb"
+  },
+  {
+    "id": "a3",
+    "title": "Critical Thinking in the AI Era",
+    "issuer": "HP LIFE",
+    "year": "June, 2026.",
+    "order": 3,
+    "published": true,
+    "description": "certificate of completion for the Critical Thinking in the AI Era course offered by HP LIFE, emphasizing analytical skills and decision-making in the context of artificial intelligence.",
+    "image": "images/critical thinking.png",
+    "link": "https://www.google.com/url?sa=D&q=https://www.life-global.org/certificate/627b16dd-44b6-43cb-a1d7-edaf69037fb9&ust=1792146300000000&usg=AOvVaw1WqIlC3FuLpPowyq0yQT4t&hl=en"
+  },
+  {
+    "id": "a4",
+    "title": "Effective Leadership",
+    "issuer": "HP LIFE",
+    "year": "",
+    "order": 4,
+    "published": true,
+    "description": "Certificate of completion for the effective leadership course offered by HP LIFE, focusing on developing leadership skills and strategies for effective team management.",
+    "image": "images/effective leadership.png",
+    "link": "https://www.life-global.org/certificate/4f1c8b1d-72f9-40fd-bea9-d8613e4bb5d0"
+  }
 ]

@@ -16,7 +16,8 @@ export function openLightbox(items, start, opener) {
   const show = n => {
     i = (n + items.length) % items.length;
     const im = $('img', lb); im.src = img(items[i].image, 1800); im.alt = items[i].caption || '';
-    $('figcaption', lb).textContent = items[i].caption || '';
+    const fc = $('figcaption', lb); fc.textContent = items[i].caption || '';
+    if (items[i].sub) { const s = document.createElement('small'); s.textContent = items[i].sub; fc.appendChild(s); }
   };
   const close = () => { lb.remove(); document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); opener?.focus(); };
   const onKey = e => {

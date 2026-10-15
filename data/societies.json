@@ -1,0 +1,65 @@
+[
+  {
+    "id": "nse",
+    "name": "NSE",
+    "fullName": "Nigerian Society of Engineers",
+    "logo": "images/societies/nse.jpg",
+    "link": "",
+    "order": 1,
+    "published": true
+  },
+  {
+    "id": "nsche",
+    "name": "NSChE",
+    "fullName": "Nigerian Society of Chemical Engineers",
+    "logo": "images/societies/nsche.png",
+    "link": "",
+    "order": 2,
+    "published": true
+  },
+  {
+    "id": "spe",
+    "name": "SPE",
+    "fullName": "Society of Petroleum Engineers",
+    "logo": "images/societies/spe.jpg",
+    "link": "",
+    "order": 3,
+    "published": true
+  },
+  {
+    "id": "aiche",
+    "name": "AIChE",
+    "fullName": "American Institute of Chemical Engineers",
+    "logo": "images/societies/aiche.png",
+    "link": "",
+    "order": 4,
+    "published": true
+  },
+  {
+    "id": "icheme",
+    "name": "IChemE",
+    "fullName": "Institution of Chemical Engineers",
+    "logo": "images/societies/icheme.jpg",
+    "link": "",
+    "order": 5,
+    "published": true
+  },
+  {
+    "id": "iaeng",
+    "name": "IAENG",
+    "fullName": "International Association of Engineers",
+    "logo": "images/societies/iaeng.jpg",
+    "link": "",
+    "order": 6,
+    "published": true
+  },
+  {
+    "id": "EI Africa",
+    "name": "EI Africa",
+    "fullName": "Energy Institute, Africa",
+    "logo": "images/societies/ei_africa.png",
+    "link": "",
+    "order": 7,
+    "published": true
+  }
+]

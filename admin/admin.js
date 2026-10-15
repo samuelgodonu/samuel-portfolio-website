@@ -14,7 +14,7 @@ const COLS = {
       { k: 'title', l: 'Title', t: 'text', req: 1 },
       { k: 'summary', l: 'Short summary', t: 'textarea', req: 1, rows: 3 },
       { k: 'role', l: 'Your role', t: 'text', help: 'e.g. Process modelling and analysis' },
-      { k: 'category', l: 'Category', t: 'text', help: 'e.g. Process simulation, Research, Design and leadership' },
+      { k: 'category', l: 'Field or category', t: 'combo', opts: ['Process simulation', 'Design and leadership'], help: 'Type a new field (e.g. Energy systems) and a new filter button appears on the site' },
       { k: 'date', l: 'Date or period', t: 'text', help: 'e.g. 2026 or 2020 – present' },
       { k: 'cover', l: 'Cover image', t: 'image' },
       { k: 'content', l: 'Overview', t: 'textarea', rows: 9, help: 'Blank line = new paragraph' },
@@ -55,18 +55,28 @@ const COLS = {
       { k: 'image', l: 'Picture', t: 'image' }, { k: 'link', l: 'Link', t: 'url' }, ORD, PUB
     ]
   },
-  awards: {
-    label: 'Certificates', single: 'certificate', title: 'title', sub: 'issuer',
+  societies: {
+    label: 'Societies', single: 'society', title: 'name', sub: 'fullName', img: 'logo',
     fields: [
-      { k: 'title', l: 'Title', t: 'text', req: 1 }, { k: 'issuer', l: 'Issued by', t: 'text' },
-      { k: 'year', l: 'Year', t: 'text' }, ORD, PUB
+      { k: 'name', l: 'Short name', t: 'text', req: 1, help: 'e.g. SPE' }, { k: 'fullName', l: 'Full name', t: 'text' },
+      { k: 'logo', l: 'Logo', t: 'image', help: 'Shown inside a circle' }, { k: 'link', l: 'Website', t: 'url' }, ORD, PUB
+    ]
+  },
+  awards: {
+    label: 'Certificates', single: 'certificate or award', title: 'title', sub: 'issuer', img: 'image',
+    fields: [
+      { k: 'title', l: 'Title', t: 'text', req: 1 }, { k: 'issuer', l: 'Issued by', t: 'text' }, { k: 'year', l: 'Year', t: 'text' },
+      { k: 'image', l: 'Picture of the certificate', t: 'image', help: 'Shown inside the card' },
+      { k: 'description', l: 'Details', t: 'textarea', rows: 4 }, { k: 'link', l: 'Link', t: 'url' }, ORD, PUB
     ]
   },
   gallery: {
-    label: 'Gallery', single: 'picture', title: 'caption', sub: 'album', img: 'image',
+    label: 'Gallery', single: 'picture', title: 'title', sub: 'album', img: 'image',
     fields: [
-      { k: 'image', l: 'Image', t: 'image', req: 1 }, { k: 'caption', l: 'Caption', t: 'text' },
-      { k: 'album', l: 'Album', t: 'text', help: 'e.g. Lab, Events, Design' }, ORD, PUB
+      { k: 'image', l: 'Picture', t: 'image', req: 1 },
+      { k: 'title', l: 'Title of the event or picture', t: 'text', req: 1 },
+      { k: 'album', l: 'Album', t: 'combo', opts: ['Lab', 'Designs', 'Events'], help: 'Pick one, or type a new album name' },
+      { k: 'description', l: 'Extra details', t: 'textarea', rows: 3 }, ORD, PUB
     ]
   },
   timeline: {
@@ -93,10 +103,12 @@ const SETTINGS_FIELDS = [
   { k: 'kicker', l: 'Line above your name', t: 'text' },
   { k: 'status', l: 'Status chip', t: 'text', help: 'e.g. Open to internships' },
   { k: 'roles', l: 'Rotating focus areas', t: 'text', help: 'Comma separated' },
+  { k: 'upcoming', l: 'Upcoming project fields', t: 'text', help: 'Comma separated. Shown as "coming soon" under Work' },
   { k: 'headline', l: 'Homepage headline sentence', t: 'text' },
   { k: 'bio', l: 'Short bio', t: 'textarea', rows: 3 },
   { k: 'story', l: 'About story', t: 'textarea', rows: 10, help: 'Blank line = new paragraph' },
   { k: 'portrait', l: 'Portrait photo', t: 'image' },
+  { k: 'portraitFocus', l: 'Portrait focus', t: 'text', help: 'Which part of the photo stays in frame, e.g. 50% 20% (higher second number shows lower part)' },
   { k: 'email', l: 'Public email', t: 'text' },
   { k: 'location', l: 'Location', t: 'text' }, { k: 'university', l: 'University', t: 'text' },
   { k: 'memberships', l: 'Memberships', t: 'text', help: 'Comma separated' },
@@ -256,6 +268,7 @@ function fieldHTML(f, v, editing) {
     case 'textarea': input = `<textarea id="${id}" name="${f.k}" rows="${f.rows || 4}">${esc(val)}</textarea>`; break;
     case 'number': input = `<input id="${id}" name="${f.k}" type="number" step="1" value="${esc(val)}">`; break;
     case 'select': input = `<select id="${id}" name="${f.k}">${f.opts.map(o => `<option ${o === val ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>`; break;
+    case 'combo': input = `<input id="${id}" name="${f.k}" list="dl_${f.k}" value="${esc(val)}" autocomplete="off"><datalist id="dl_${f.k}">${f.opts.map(o => `<option value="${esc(o)}">`).join('')}</datalist>`; break;
     case 'tags': input = `<input id="${id}" name="${f.k}" value="${esc((v || []).join(', '))}">`; break;
     case 'lines': case 'images': input = `<textarea id="${id}" name="${f.k}" rows="${f.t === 'images' ? 3 : 5}">${esc((v || []).join('\n'))}</textarea>` +
       (f.t === 'images' ? `<div class="line"><input type="file" accept="image/*" multiple data-up-multi="${f.k}" aria-label="Choose pictures to upload"><span class="s muted" data-st="${f.k}"></span></div>` : ''); break;

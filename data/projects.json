@@ -2,38 +2,27 @@
   {
     "id": "aspen-ethylene-isobutane-octane",
     "title": "Ethylene–isobutane to n-octane",
-    "summary": "A simplified Aspen Plus V11 flowsheet with a stoichiometric reactor, flash separation, a distillation column and a recycle-and-purge loop, plus a reactor-temperature sensitivity study.",
+    "summary": "A simplified Aspen Plus V11 flowsheet with a stoichiometric reactor, flash separation, a distillation column and a recycle-and-purge loop.",
     "category": "Process simulation",
     "tags": [
       "Aspen Plus V11",
       "Peng–Robinson",
       "Recycle and purge",
-      "RadFrac",
-      "Sensitivity analysis"
+      "RadFrac"
     ],
     "cover": "images/slide-reactor.svg",
     "date": "2026",
-    "content": "I built this model to practise how separate pieces of equipment behave together in a plant. Fresh ethylene (100 kmol/h) and isobutane (50 kmol/h) are mixed with the recycle stream, heated, and sent to an RStoic reactor operating at 10 bar. The reactor effluent is cooled and flashed at 20 °C and 10 bar. The liquid goes to a 15-stage RadFrac column (feed on stage 3); the overhead is split 95% recycle and 5% purge, and the bottoms is the n-octane product.\n\nThe reaction is the simplified stoichiometry 2 C2H4 + C4H10 → C8H18, with an ethylene conversion of 80% specified in the reactor block. Property method: Peng–Robinson.\n\nI then ran the reactor outlet temperature at 60, 80, 100, 120 and 140 °C and compared octane flow, flash flows, and the cooler and reboiler duties. Use the interactive explorer to move through the cases.",
+    "content": "I built this model to practise how separate pieces of equipment behave together in a plant. Fresh ethylene (100 kmol/h) and isobutane (50 kmol/h) are mixed with the recycle stream, heated, and sent to an RStoic reactor operating at 10 bar. The reactor effluent is cooled and flashed at 20 °C and 10 bar. The liquid goes to a 15-stage RadFrac column (feed on stage 3); the overhead is split 95% recycle and 5% purge, and the bottoms is the n-octane product.\n\nThe reaction is the simplified stoichiometry 2 C2H4 + C4H10 → C8H18, with an ethylene conversion of 80% specified in the reactor block. Property method: Peng–Robinson.",
     "results": [
-      "n-octane component flow stays at about 49.74 kmol/h in all five cases.",
-      "n-octane mole purity is about 0.9977 in every case.",
-      "Cooler duty grows from −93 kW at 60 °C to −523 kW at 140 °C (more heat removed as the outlet gets hotter).",
-      "Flash vapour (about 9.84 kmol/h) and liquid (about 70.29 kmol/h) barely change.",
-      "Reboiler duty stays near 1192.7 kW, heater near 514.7 kW and condenser near −233.65 kW."
+      "n-octane product of about 49.74 kmol/h at the base case.",
+      "n-octane mole purity of about 0.9977.",
+      "Reboiler duty near 1192.7 kW, heater near 514.7 kW and condenser near −233.65 kW.",
+      "The feed (100 kmol/h ethylene, 50 kmol/h isobutane) is exactly stoichiometric, so the most octane it can make is 50 kmol/h."
     ],
-    "limitations": "The reactor uses a specified 80% conversion, not temperature-dependent kinetics, so this study shows how the simulated process responds, not how temperature affects the real reaction. The reaction is a simplified representation that has not been validated against experimental data. Results also depend on the property method, recycle configuration and separation specifications.",
+    "limitations": "The reactor uses a specified 80% conversion, not reaction kinetics, and the reaction is a simplified representation that has not been validated against experimental data. Results also depend on the property method, recycle configuration and separation specifications.",
     "github": "https://github.com/samuelgodonu",
-    "demo": "simulation.html",
-    "files": [
-      {
-        "label": "Sensitivity data (CSV)",
-        "url": "data/temperature-study.csv"
-      },
-      {
-        "label": "Sensitivity data (JSON)",
-        "url": "data/temperature-study.json"
-      }
-    ],
+    "demo": "",
+    "files": [],
     "images": [],
     "featured": true,
     "order": 1,

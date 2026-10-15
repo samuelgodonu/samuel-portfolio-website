@@ -3,10 +3,9 @@
 Plain HTML, CSS, JavaScript and JSON. No build step, no Node, no npm.
 
 ```
-index.html          home (hero, carousel, work, live simulation widget, experience, skills, research, hackathons, gallery, about, contact)
+index.html          home (hero, carousel, work, experience, skills, research, hackathons, gallery, about, contact)
 summary.html        2-minute summary (print or save as PDF)
 project.html        one page for every project (project.html?id=...)
-simulation.html     interactive Aspen temperature-study explorer
 404.html            not-found page
 admin/              the dashboard (sign-in required)
 css/  js/  data/  images/
@@ -37,7 +36,6 @@ All content lives in `data/*.json`:
 | `gallery.json` | gallery pictures |
 | `timeline.json` | Education, Experience and Leadership tabs (`type` field) |
 | `skills.json` | skills with a `level`: Learning, Working knowledge or Strong |
-| `temperature-study.json` | numbers behind the simulation page |
 
 Put your pictures in `images/` and refer to them like `images/my-photo.jpg`. The four `slide-*.svg` files are placeholders: replace them.
 
@@ -87,6 +85,15 @@ The free plan needs no card. Uploaded pictures are resized and compressed automa
 
 ## Notes
 
-- The simulation page never invents data: values between the five simulated temperatures are labelled as interpolated, and quantities that only move by numerical noise are labelled that way.
-- The flowsheet on the simulation page is a schematic. Check it against your Aspen flowsheet, especially where the flash vapour goes, and edit `simulation.html` if needed.
 - Phone number from your LinkedIn is deliberately not on the site.
+
+## Where to add things
+
+| I want to add… | Dashboard | Or edit this file |
+|---|---|---|
+| A new project, in any field | Projects > Add project. Type a new **Field or category** and a filter button appears on the site by itself | `data/projects.json` (copy a block, change the `"category"`) |
+| A field I have not started yet | Site settings > **Upcoming project fields** | `"upcoming"` in `data/settings.json` (shown as "soon" chips under Work) |
+| Gallery pictures | Gallery > Add picture. Pick the album (Lab, Designs, Events or a new one) and give every picture a title | `data/gallery.json` (one block per picture) |
+| A hackathon | Hackathons > Add hackathon (picture goes inside the card) | `data/hackathons.json` |
+| A certificate or award | Certificates > Add certificate or award | `data/awards.json` |
+| Research | Research > Add research item. "Coming soon" disappears once you add one | `data/research.json` |

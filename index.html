@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Samuel Godonu | Chemical Engineering Student</title>
-  <meta name="description" content="Portfolio of Samuel Godonu, chemical engineering student at Lagos State University: process simulation, research, hackathons and projects.">
+  <meta name="description" content="Portfolio of Samuel Godonu, chemical engineering student at Lagos State University: projects, research, hackathons and more.">
   <meta property="og:title" content="Samuel Godonu | Chemical Engineering Student">
-  <meta property="og:description" content="Portfolio of Samuel Godonu, chemical engineering student at Lagos State University: process simulation, research, hackathons and projects.">
+  <meta property="og:description" content="Portfolio of Samuel Godonu, chemical engineering student at Lagos State University: projects, research, hackathons and more.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0f766e">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -24,7 +24,6 @@
       <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
       <nav id="menu" aria-label="Main">
         <a href="#work" data-for="work">Work</a>
-        <a href="simulation.html">Simulation</a>
         <a href="#experience" data-for="experience">Experience</a>
         <a href="#research" data-for="research">Research</a>
         <a href="#hackathons" data-for="hackathons">Achievements</a>
@@ -54,9 +53,9 @@
         </div>
         <div class="hero-visual reveal" id="hero-visual">
           <div class="portrait-card" id="hero-portrait"><div class="ph"><b>SG</b><span>Chemical Engineering, LASU</span></div></div>
-          <span class="float-chip c1"><i></i>Aspen Plus V11</span>
-          <span class="float-chip c2"><i></i>NEXUS 3.0 Certificate of Excellence</span>
-          <span class="float-chip c3"><i></i>Lagos, Nigeria</span>
+          <span class="float-chip c1"><i></i>Chemical Engineering Undergraduate</span>
+          <span class="float-chip c2"><i></i>Co-Founder, The Builders Circle</span>
+          <span class="float-chip c3"><i></i>3D Modeling and Process Design</span>
         </div>
       </div>
     </section>
@@ -75,33 +74,14 @@
 
     <section id="work" class="alt">
       <div class="wrap">
-        <div class="sec-head reveal"><h2>Selected <span class="mark">work</span></h2><p>Simulations, ventures and projects. Every project states its assumptions and limits.</p></div>
+        <div class="sec-head reveal"><h2>Selected <span class="mark">work</span></h2><p>Simulations, hackathons and projects. .</p></div>
         <div class="toolbar reveal">
           <div class="search"><label class="hp" for="project-search">Search projects</label><input id="project-search" type="search" placeholder="Search projects…" autocomplete="off"></div>
           <div class="filters" id="project-filters" role="group" aria-label="Filter projects"></div>
         </div>
         <p class="count" id="project-count" aria-live="polite"></p>
         <div class="grid" id="project-grid"></div>
-      </div>
-    </section>
-
-    <section id="simulation">
-      <div class="wrap">
-        <div class="frame simw reveal">
-          <div>
-            <h2>Move the reactor temperature. <span class="mark">Watch the plant respond.</span></h2>
-            <p class="muted">From my Aspen Plus temperature study. Octane output stays put because conversion is specified in the model, while the cooler has to work much harder. Try it.</p>
-            <a class="btn primary" href="simulation.html">Open the full explorer</a>
-          </div>
-          <div>
-            <label for="sw-range" style="font-weight:500">Reactor outlet temperature</label>
-            <input id="sw-range" type="range" min="60" max="140" step="1" value="100">
-            <div class="big"><span id="sw-val">100</span><small>°C</small></div>
-            <span class="badge sim" id="sw-badge">Simulated case</span>
-            <svg id="sw-spark" class="spark" viewBox="0 0 320 120" role="img" aria-label="Cooler duty rises as the reactor outlet temperature increases"></svg>
-            <dl class="readout" id="sw-readout"></dl>
-          </div>
-        </div>
+        <div class="soon reveal" id="project-soon" hidden></div>
       </div>
     </section>
 
@@ -131,8 +111,10 @@
     <section id="hackathons" hidden>
       <div class="wrap">
         <div class="sec-head reveal"><h2>Hackathons and <span class="mark">awards</span></h2><p>Competitions entered and certificates earned.</p></div>
+        <h3 class="sub reveal" id="hack-h">Hackathons</h3>
         <div class="hack" id="hack-grid"></div>
-        <ul class="awards" id="awards-list" aria-label="Certificates"></ul>
+        <h3 class="sub reveal" id="award-h">Certificates and awards</h3>
+        <div class="hack" id="awards-grid"></div>
       </div>
     </section>
 
@@ -187,7 +169,7 @@
   <footer>
     <div class="wrap">
       <span>© <span id="year"></span> <span data-s="name">Samuel Godonu</span></span>
-      <span>Simulation results are shown within the assumptions of each model.</span>
+      <span>Results are shown within the assumptions of each project.</span>
     </div>
   </footer>
   <script type="module" src="js/main.js"></script>

@@ -37,7 +37,7 @@ function videoHTML(url, title) {
   document.title = `${p.title} | Samuel Godonu`;
 
   const links = [];
-  if (p.demo) links.push(`<a class="btn primary" href="${esc(safeUrl(p.demo))}">${p.demo.startsWith('simulation') ? 'Open the interactive explorer' : 'Visit the project'}</a>`);
+  if (p.demo) links.push(`<a class="btn primary" href="${esc(safeUrl(p.demo))}">Visit the project</a>`);
   if (p.github) links.push(`<a class="btn" href="${esc(safeUrl(p.github))}" target="_blank" rel="noopener">GitHub</a>`);
 
   const files = p.files || [], pics = p.images || [], results = p.results || [];

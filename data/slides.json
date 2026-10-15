@@ -1,6 +1,35 @@
 [
-  { "id": "s1", "title": "Ethylene to n-octane, simulated", "subtitle": "A recycle loop, flash separation and distillation built in Aspen Plus V11.", "image": "images/slide-reactor.svg", "alt": "Placeholder: process flowsheet drawing", "link": "project.html?id=aspen-ethylene-isobutane-octane", "linkLabel": "Read the project", "order": 1, "published": true },
-  { "id": "s2", "title": "Explore the temperature study", "subtitle": "Move the reactor outlet temperature and watch the duties respond.", "image": "images/slide-chart.svg", "alt": "Placeholder: sensitivity chart", "link": "simulation.html", "linkLabel": "Open the explorer", "order": 2, "published": true },
-  { "id": "s3", "title": "Replace this slide with your photo", "subtitle": "Add hackathon, lab and field-trip pictures from the dashboard.", "image": "images/slide-column.svg", "alt": "Placeholder image", "link": "", "linkLabel": "", "order": 3, "published": true },
-  { "id": "s4", "title": "NEXUS 3.0 Hackathon", "subtitle": "Certificate of Excellence.", "image": "images/slide-flash.svg", "alt": "Placeholder image", "link": "#hackathons", "linkLabel": "See hackathons", "order": 4, "published": true }
+  {
+    "id": "s1",
+    "title": "Ethylene to n-octane, simulated",
+    "subtitle": "A recycle loop, flash separation and distillation built in Aspen Plus V11.",
+    "image": "images/slide-reactor.svg",
+    "alt": "Placeholder: process flowsheet drawing",
+    "link": "project.html?id=aspen-ethylene-isobutane-octane",
+    "linkLabel": "Read the project",
+    "order": 1,
+    "published": true
+  },
+  {
+    "id": "s3",
+    "title": "Replace this slide with your photo",
+    "subtitle": "Add hackathon, lab and field-trip pictures from the dashboard.",
+    "image": "images/slide-column.svg",
+    "alt": "Placeholder image",
+    "link": "",
+    "linkLabel": "",
+    "order": 2,
+    "published": true
+  },
+  {
+    "id": "s4",
+    "title": "NEXUS 3.0 Hackathon",
+    "subtitle": "Certificate of Excellence.",
+    "image": "images/slide-flash.svg",
+    "alt": "Placeholder image",
+    "link": "#hackathons",
+    "linkLabel": "See hackathons",
+    "order": 3,
+    "published": true
+  }
 ]
