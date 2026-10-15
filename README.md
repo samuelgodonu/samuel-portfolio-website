@@ -3,7 +3,8 @@
 Plain HTML, CSS, JavaScript and JSON. No build step, no Node, no npm.
 
 ```
-index.html          home (hero, carousel, work, research, hackathons, gallery, about, contact)
+index.html          home (hero, carousel, work, live simulation widget, experience, skills, research, hackathons, gallery, about, contact)
+summary.html        2-minute summary (print or save as PDF)
 project.html        one page for every project (project.html?id=...)
 simulation.html     interactive Aspen temperature-study explorer
 404.html            not-found page
@@ -34,7 +35,8 @@ All content lives in `data/*.json`:
 | `research.json` | research list (section hides itself when empty) |
 | `hackathons.json`, `awards.json` | hackathons and certificates |
 | `gallery.json` | gallery pictures |
-| `timeline.json`, `skills.json` | About page |
+| `timeline.json` | Education, Experience and Leadership tabs (`type` field) |
+| `skills.json` | skills with a `level`: Learning, Working knowledge or Strong |
 | `temperature-study.json` | numbers behind the simulation page |
 
 Put your pictures in `images/` and refer to them like `images/my-photo.jpg`. The four `slide-*.svg` files are placeholders: replace them.
@@ -75,7 +77,10 @@ The free plan needs no card. Uploaded pictures are resized and compressed automa
 
 ## 5. Before you announce it
 
+- Add your portrait (Site settings > Portrait photo, or `"portrait"` in `settings.json`). The site is built around real photos, so this matters most.
 - Replace the placeholder slides and gallery pictures.
+- Check every skill level in `skills.json`. They are my starting guesses, not facts.
+- Add a YouTube link to a project (`"video"`) and it appears as a click-to-play video on that project's page.
 - Check that every statement about your projects is accurate. Dates for the hackathon and certificates are blank on purpose: fill them in.
 - In `index.html` add an `og:image` meta tag with the full URL of a preview picture.
 - Custom domain: Netlify > **Domain management > Add a domain**.

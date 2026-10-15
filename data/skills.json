@@ -1,14 +1,98 @@
 [
-  { "id": "k1", "name": "Aspen Plus V11", "category": "Process engineering", "order": 1, "published": true },
-  { "id": "k2", "name": "Peng–Robinson property method", "category": "Process engineering", "order": 2, "published": true },
-  { "id": "k3", "name": "Recycle and purge flowsheets", "category": "Process engineering", "order": 3, "published": true },
-  { "id": "k4", "name": "Flash and distillation (RadFrac)", "category": "Process engineering", "order": 4, "published": true },
-  { "id": "k5", "name": "Sensitivity analysis", "category": "Process engineering", "order": 5, "published": true },
-  { "id": "k6", "name": "WPS Spreadsheets", "category": "Tools", "order": 6, "published": true },
-  { "id": "k7", "name": "Microsoft Word", "category": "Tools", "order": 7, "published": true },
-  { "id": "k8", "name": "Microsoft PowerPoint", "category": "Tools", "order": 8, "published": true },
-  { "id": "k9", "name": "Graphic design", "category": "Design and leadership", "order": 9, "published": true },
-  { "id": "k10", "name": "Organizational leadership", "category": "Design and leadership", "order": 10, "published": true },
-  { "id": "k11", "name": "Design thinking", "category": "Design and leadership", "order": 11, "published": true },
-  { "id": "k12", "name": "Critical thinking", "category": "Design and leadership", "order": 12, "published": true }
+  {
+    "id": "k1",
+    "name": "Aspen Plus V11",
+    "category": "Process engineering",
+    "order": 1,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k2",
+    "name": "Peng–Robinson property method",
+    "category": "Process engineering",
+    "order": 2,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k3",
+    "name": "Recycle and purge flowsheets",
+    "category": "Process engineering",
+    "order": 3,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k4",
+    "name": "Flash and distillation (RadFrac)",
+    "category": "Process engineering",
+    "order": 4,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k5",
+    "name": "Sensitivity analysis",
+    "category": "Process engineering",
+    "order": 5,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k6",
+    "name": "WPS Spreadsheets",
+    "category": "Tools",
+    "order": 6,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k7",
+    "name": "Microsoft Word",
+    "category": "Tools",
+    "order": 7,
+    "published": true,
+    "level": "Strong"
+  },
+  {
+    "id": "k8",
+    "name": "Microsoft PowerPoint",
+    "category": "Tools",
+    "order": 8,
+    "published": true,
+    "level": "Strong"
+  },
+  {
+    "id": "k9",
+    "name": "Graphic design",
+    "category": "Design and leadership",
+    "order": 9,
+    "published": true,
+    "level": "Strong"
+  },
+  {
+    "id": "k10",
+    "name": "Organizational leadership",
+    "category": "Design and leadership",
+    "order": 10,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k11",
+    "name": "Design thinking",
+    "category": "Design and leadership",
+    "order": 11,
+    "published": true,
+    "level": "Working knowledge"
+  },
+  {
+    "id": "k12",
+    "name": "Critical thinking",
+    "category": "Design and leadership",
+    "order": 12,
+    "published": true,
+    "level": "Working knowledge"
+  }
 ]

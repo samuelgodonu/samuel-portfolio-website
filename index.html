@@ -1,173 +1,180 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Samuel Godonu | Chemical Engineering Undergraduate</title>
-  <meta name="description" content="Portfolio of Samuel Godonu, chemical engineering undergraduate at Lagos State University: process simulation, research, hackathons and projects.">
-  <meta property="og:title" content="Samuel Godonu | Chemical Engineering Undergraduate">
-  <meta property="og:description" content="Process simulation, research, hackathons and projects.">
+  <title>Samuel Godonu | Chemical Engineering Student</title>
+  <meta name="description" content="Portfolio of Samuel Godonu, chemical engineering student at Lagos State University: process simulation, research, hackathons and projects.">
+  <meta property="og:title" content="Samuel Godonu | Chemical Engineering Student">
+  <meta property="og:description" content="Portfolio of Samuel Godonu, chemical engineering student at Lagos State University: process simulation, research, hackathons and projects.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0b2545">
+  <meta name="theme-color" content="#0f766e">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <script>try{var t=localStorage.getItem('sg-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("sg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-
   <header class="nav">
     <div class="wrap">
-      <a href="#top" class="logo">Samuel<span>.</span>Godonu</a>
+      <a href="#top" class="logo"><i>SG</i><span>Samuel Godonu</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
       <nav id="menu" aria-label="Main">
         <a href="#work" data-for="work">Work</a>
         <a href="simulation.html">Simulation</a>
+        <a href="#experience" data-for="experience">Experience</a>
         <a href="#research" data-for="research">Research</a>
-        <a href="#hackathons" data-for="hackathons">Hackathons</a>
+        <a href="#hackathons" data-for="hackathons">Achievements</a>
         <a href="#gallery" data-for="gallery">Gallery</a>
         <a href="#about" data-for="about">About</a>
-        <a href="#contact" data-for="contact">Contact</a>
-        <button class="theme-btn" data-theme-toggle type="button">Light theme</button>
+        <a href="summary.html">2-min summary</a>
+        <a class="btn small primary" href="#contact">Contact</a>
+        <button class="theme-btn" data-theme-toggle type="button">Dark mode</button>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <!-- HERO -->
     <section class="hero" id="top">
       <div class="wrap">
         <div>
-          <p class="kicker" data-s="kicker">Chemical engineering undergraduate, Lagos State University</p>
-          <h1 data-s="name">Samuel Godonu</h1>
-          <p class="lead" data-s="headline">I build process simulations, then check what the numbers actually mean.</p>
-          <div class="cta">
+          <p class="status reveal" data-s="status">Open to internships and collaboration</p>
+          <h1 class="reveal" data-s="name">Samuel Godonu</h1>
+          <p class="roleline reveal" aria-label="Focus areas"><span id="role-text">Process simulation</span><i class="caret" aria-hidden="true"></i></p>
+          <p class="lead reveal" data-s="headline"></p>
+          <div class="cta reveal">
             <a class="btn primary" href="#work">See my work</a>
-            <a class="btn" href="simulation.html">Open the simulation</a>
+            <a class="btn" href="summary.html">2-minute summary</a>
             <a class="btn" data-resume href="#" target="_blank" rel="noopener">Download CV</a>
           </div>
+          <div class="socialrow reveal" id="hero-social"></div>
         </div>
-        <a class="frame sheet" href="simulation.html" aria-label="Open the interactive temperature study" style="text-decoration:none">
-          <svg viewBox="0 0 520 255" role="img" aria-label="Simplified process flow: reactor, cooler, flash, distillation column, with a recycle loop">
-            <path class="pipe" d="M0 125H20"/>
-            <rect class="vessel" x="20" y="95" width="70" height="60" rx="8"/>
-            <text class="svgtxt" x="55" y="172" text-anchor="middle">R-101</text>
-            <path class="pipe" d="M90 125H130"/>
-            <rect class="vessel" x="130" y="105" width="60" height="40" rx="3"/>
-            <text class="svgtxt" x="160" y="162" text-anchor="middle">E-102</text>
-            <path class="pipe" d="M190 125H240"/>
-            <rect class="vessel" x="240" y="80" width="70" height="90" rx="28"/>
-            <text class="svgtxt" x="275" y="188" text-anchor="middle">V-101</text>
-            <path class="pipe" d="M275 80V52"/>
-            <text class="svgtxt m" x="283" y="62">vapour</text>
-            <path class="pipe" d="M310 150H390"/>
-            <rect class="vessel" x="390" y="40" width="70" height="170" rx="14"/>
-            <text class="svgtxt" x="425" y="228" text-anchor="middle">T-101</text>
-            <path class="pipe rec" d="M425 40V15H55V95"/>
-            <text class="svgtxt m" x="170" y="32">recycle</text>
-            <path class="pipe" d="M425 210V250"/>
-            <text class="svgtxt m" x="433" y="246">n-octane</text>
-          </svg>
-          <dl class="readout" id="hero-readout" aria-label="Base case results at 100 degrees Celsius"></dl>
-        </a>
+        <div class="hero-visual reveal" id="hero-visual">
+          <div class="portrait-card" id="hero-portrait"><div class="ph"><b>SG</b><span>Chemical Engineering, LASU</span></div></div>
+          <span class="float-chip c1"><i></i>Aspen Plus V11</span>
+          <span class="float-chip c2"><i></i>NEXUS 3.0 Certificate of Excellence</span>
+          <span class="float-chip c3"><i></i>Lagos, Nigeria</span>
+        </div>
       </div>
     </section>
 
-    <!-- CAROUSEL -->
-    <section id="highlights" style="padding-top:0">
-      <div class="wrap">
+    <div class="marq" id="affil" hidden>
+      <p class="marq-lab">Student member of</p>
+      <div class="marq-track" id="marq-track" aria-hidden="true"></div>
+      <p class="hp" id="marq-sr"></p>
+    </div>
+
+    <section id="highlights" style="padding-block:clamp(2.5rem,6vw,4.5rem)">
+      <div class="wrap reveal">
         <div class="car" id="carousel" role="region" aria-roledescription="carousel" aria-label="Featured highlights"></div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="work" class="alt">
       <div class="wrap">
-        <div class="sec-head"><h2>Work</h2><p>Simulations, ventures and projects. Each page states its assumptions and limits.</p></div>
-        <div class="filters" id="project-filters" role="group" aria-label="Filter projects"></div>
+        <div class="sec-head reveal"><h2>Selected <span class="mark">work</span></h2><p>Simulations, ventures and projects. Every project states its assumptions and limits.</p></div>
+        <div class="toolbar reveal">
+          <div class="search"><label class="hp" for="project-search">Search projects</label><input id="project-search" type="search" placeholder="Search projects…" autocomplete="off"></div>
+          <div class="filters" id="project-filters" role="group" aria-label="Filter projects"></div>
+        </div>
+        <p class="count" id="project-count" aria-live="polite"></p>
         <div class="grid" id="project-grid"></div>
       </div>
     </section>
 
-    <!-- SIMULATION BAND -->
-    <section id="sim">
+    <section id="simulation">
       <div class="wrap">
-        <div class="frame band">
+        <div class="frame simw reveal">
           <div>
-            <h2>Move the reactor temperature. Watch the plant respond.</h2>
-            <p class="muted">An interactive version of my Aspen Plus temperature study: charts, a results table, and a clickable flowsheet with the model's assumptions.</p>
-            <a class="btn primary" href="simulation.html">Open the explorer</a>
+            <h2>Move the reactor temperature. <span class="mark">Watch the plant respond.</span></h2>
+            <p class="muted">From my Aspen Plus temperature study. Octane output stays put because conversion is specified in the model, while the cooler has to work much harder. Try it.</p>
+            <a class="btn primary" href="simulation.html">Open the full explorer</a>
           </div>
-          <dl class="readout" id="band-readout" aria-label="Cooler duty at the lowest and highest temperatures"></dl>
+          <div>
+            <label for="sw-range" style="font-weight:500">Reactor outlet temperature</label>
+            <input id="sw-range" type="range" min="60" max="140" step="1" value="100">
+            <div class="big"><span id="sw-val">100</span><small>°C</small></div>
+            <span class="badge sim" id="sw-badge">Simulated case</span>
+            <svg id="sw-spark" class="spark" viewBox="0 0 320 120" role="img" aria-label="Cooler duty rises as the reactor outlet temperature increases"></svg>
+            <dl class="readout" id="sw-readout"></dl>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- RESEARCH -->
+    <section id="experience" class="alt" hidden>
+      <div class="wrap">
+        <div class="sec-head reveal"><h2>Education and <span class="mark">experience</span></h2><p>Where I study, what I run, and the communities I serve in.</p></div>
+        <div class="tabs reveal" id="xp-tabs" role="tablist" aria-label="Experience categories"></div>
+        <ul class="xp-list" id="xp-list" role="tabpanel"></ul>
+      </div>
+    </section>
+
+    <section id="skills" hidden>
+      <div class="wrap">
+        <div class="sec-head reveal"><h2>Skills and <span class="mark">tools</span></h2><p>Self-assessed levels. I would rather underclaim and show the work.</p></div>
+        <div class="skills-grid" id="skills-grid"></div>
+        <p class="legend">Learning: early practice. Working knowledge: used in real projects. Strong: used regularly and confident teaching it.</p>
+      </div>
+    </section>
+
     <section id="research" class="alt" hidden>
       <div class="wrap">
-        <div class="sec-head"><h2>Research</h2><p>Studies, reports and literature work.</p></div>
+        <div class="sec-head reveal"><h2><span class="mark">Research</span></h2><p>Studies, reports and literature work.</p></div>
         <ul class="list" id="research-list"></ul>
       </div>
     </section>
 
-    <!-- HACKATHONS -->
     <section id="hackathons" hidden>
       <div class="wrap">
-        <div class="sec-head"><h2>Hackathons and awards</h2><p>Competitions entered and certificates earned.</p></div>
+        <div class="sec-head reveal"><h2>Hackathons and <span class="mark">awards</span></h2><p>Competitions entered and certificates earned.</p></div>
         <div class="hack" id="hack-grid"></div>
         <ul class="awards" id="awards-list" aria-label="Certificates"></ul>
       </div>
     </section>
 
-    <!-- GALLERY -->
     <section id="gallery" class="alt" hidden>
       <div class="wrap">
-        <div class="sec-head"><h2>Gallery</h2><p>Select a picture to enlarge it.</p></div>
-        <div class="filters" id="gallery-filters" role="group" aria-label="Filter gallery"></div>
+        <div class="sec-head reveal"><h2><span class="mark">Gallery</span></h2><p>Select a picture to enlarge it.</p></div>
+        <div class="filters reveal" id="gallery-filters" role="group" aria-label="Filter gallery" style="margin-bottom:1.5rem"></div>
         <div class="gallery" id="gallery-grid"></div>
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
-        <div class="sec-head"><h2>About</h2><p data-s="location">Lagos, Nigeria</p></div>
+        <div class="sec-head reveal"><h2>About <span class="mark">me</span></h2><p data-s="location">Lagos, Nigeria</p></div>
         <div class="about">
+          <div class="portrait-card reveal" id="about-portrait"><div class="ph"><b>SG</b></div></div>
           <div>
-            <div class="frame portrait" id="portrait"><span class="initials" aria-hidden="true">SG</span></div>
-            <div id="story"></div>
-            <dl class="readout facts" id="facts"></dl>
-          </div>
-          <div>
-            <h3 style="margin-bottom:1rem">Timeline</h3>
-            <ul class="timeline" id="timeline"></ul>
-            <h3 style="margin-bottom:1rem">Skills and tools</h3>
-            <div id="skills"></div>
+            <div id="story" class="reveal"></div>
+            <div class="now reveal" id="now"></div>
+            <dl class="readout facts reveal" id="facts"></dl>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="alt">
       <div class="wrap">
-        <div class="sec-head"><h2>Contact</h2><p data-s="availability">Open to collaboration.</p></div>
+        <div class="sec-head reveal"><h2>Let's <span class="mark">talk</span></h2><p data-s="availability">Open to collaboration.</p></div>
         <div class="contact">
-          <!-- Netlify Forms: keep the form in this HTML file so Netlify can detect it -->
-          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
-            <input type="hidden" name="form-name" value="contact">
-            <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-            <label>Name <input name="name" required maxlength="100" autocomplete="name"></label>
-            <label>Email <input name="email" type="email" required maxlength="200" autocomplete="email"></label>
-            <label>Message <textarea name="message" required maxlength="3000"></textarea></label>
-            <button class="btn primary" type="submit" id="send-btn">Send message</button>
-            <p class="form-status" id="form-status" role="status"></p>
-          </form>
-          <div>
+          <div class="frame reveal">
+            <!-- Netlify Forms: keep the form in this HTML file so Netlify can detect it -->
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
+              <input type="hidden" name="form-name" value="contact">
+              <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+              <label>Name <input name="name" required maxlength="100" autocomplete="name"></label>
+              <label>Email <input name="email" type="email" required maxlength="200" autocomplete="email"></label>
+              <label>Message <textarea name="message" required maxlength="3000"></textarea></label>
+              <button class="btn primary" type="submit" id="send-btn" style="justify-self:start">Send message</button>
+              <p class="form-status" id="form-status" role="status"></p>
+            </form>
+          </div>
+          <div class="reveal">
             <h3 style="margin-bottom:.8rem">Elsewhere</h3>
             <ul class="socials" id="socials"></ul>
             <p style="margin-top:1.2rem"><a data-mail href="#" data-keep="1">Email me directly</a></p>
@@ -183,7 +190,6 @@
       <span>Simulation results are shown within the assumptions of each model.</span>
     </div>
   </footer>
-
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

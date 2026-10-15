@@ -13,6 +13,7 @@ const COLS = {
       { k: 'id', l: 'Page address', t: 'text', help: 'lowercase-with-dashes, set once', createOnly: true },
       { k: 'title', l: 'Title', t: 'text', req: 1 },
       { k: 'summary', l: 'Short summary', t: 'textarea', req: 1, rows: 3 },
+      { k: 'role', l: 'Your role', t: 'text', help: 'e.g. Process modelling and analysis' },
       { k: 'category', l: 'Category', t: 'text', help: 'e.g. Process simulation, Research, Design and leadership' },
       { k: 'date', l: 'Date or period', t: 'text', help: 'e.g. 2026 or 2020 – present' },
       { k: 'cover', l: 'Cover image', t: 'image' },
@@ -20,6 +21,7 @@ const COLS = {
       { k: 'results', l: 'Key results', t: 'lines', help: 'One result per line' },
       { k: 'limitations', l: 'Assumptions and limitations', t: 'textarea', rows: 4 },
       { k: 'tags', l: 'Tags', t: 'tags', help: 'Separate with commas' },
+      { k: 'video', l: 'Video link', t: 'url', help: 'YouTube link or a .mp4 file' },
       { k: 'demo', l: 'Demo or project link', t: 'url' },
       { k: 'github', l: 'GitHub link', t: 'url' },
       { k: 'files', l: 'Download files', t: 'files', help: 'One per line: Label | link' },
@@ -68,9 +70,11 @@ const COLS = {
     ]
   },
   timeline: {
-    label: 'Timeline', single: 'timeline entry', title: 'title', sub: 'year',
+    label: 'Experience', single: 'entry', title: 'title', sub: 'org',
     fields: [
-      { k: 'year', l: 'Year', t: 'text', req: 1 }, { k: 'title', l: 'Title', t: 'text', req: 1 },
+      { k: 'type', l: 'Group', t: 'select', opts: ['Education', 'Experience', 'Leadership'] },
+      { k: 'title', l: 'Title or role', t: 'text', req: 1 }, { k: 'org', l: 'Organisation', t: 'text' },
+      { k: 'period', l: 'Period', t: 'text', help: 'e.g. Sep 2020 – present' }, { k: 'year', l: 'Start year', t: 'text', req: 1 },
       { k: 'description', l: 'Details', t: 'textarea', rows: 3 }, ORD, PUB
     ]
   },
@@ -78,7 +82,8 @@ const COLS = {
     label: 'Skills', single: 'skill', title: 'name', sub: 'category',
     fields: [
       { k: 'name', l: 'Skill or tool', t: 'text', req: 1 },
-      { k: 'category', l: 'Group', t: 'text', help: 'e.g. Process engineering, Tools' }, ORD, PUB
+      { k: 'category', l: 'Group', t: 'text', help: 'e.g. Process engineering, Tools' },
+      { k: 'level', l: 'Level', t: 'select', opts: ['Learning', 'Working knowledge', 'Strong'] }, ORD, PUB
     ]
   }
 };
@@ -86,6 +91,8 @@ const COLS = {
 const SETTINGS_FIELDS = [
   { k: 'name', l: 'Your name', t: 'text', req: 1 },
   { k: 'kicker', l: 'Line above your name', t: 'text' },
+  { k: 'status', l: 'Status chip', t: 'text', help: 'e.g. Open to internships' },
+  { k: 'roles', l: 'Rotating focus areas', t: 'text', help: 'Comma separated' },
   { k: 'headline', l: 'Homepage headline sentence', t: 'text' },
   { k: 'bio', l: 'Short bio', t: 'textarea', rows: 3 },
   { k: 'story', l: 'About story', t: 'textarea', rows: 10, help: 'Blank line = new paragraph' },
@@ -94,6 +101,7 @@ const SETTINGS_FIELDS = [
   { k: 'location', l: 'Location', t: 'text' }, { k: 'university', l: 'University', t: 'text' },
   { k: 'memberships', l: 'Memberships', t: 'text', help: 'Comma separated' },
   { k: 'availability', l: 'Availability line', t: 'text' },
+  { k: 'learning', l: 'Currently learning', t: 'text' }, { k: 'building', l: 'Currently building', t: 'text' }, { k: 'reading', l: 'Currently reading', t: 'text' },
   { k: 'resumeUrl', l: 'CV link (PDF)', t: 'url', help: 'Upload the PDF to Cloudinary or place it in the repo and use e.g. files/cv.pdf' },
   { k: 'linkedin', l: 'LinkedIn', t: 'url' }, { k: 'github', l: 'GitHub', t: 'url' }, { k: 'x', l: 'X (Twitter)', t: 'url' },
   { k: 'instagram', l: 'Instagram', t: 'url' }, { k: 'website', l: 'Other website', t: 'url' }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2-minute summary | Samuel Godonu</title>
+  <meta name="description" content="A one-page summary of Samuel Godonu: education, experience, projects, skills and certificates.">
+  <meta property="og:title" content="2-minute summary | Samuel Godonu">
+  <meta property="og:description" content="A one-page summary of Samuel Godonu: education, experience, projects, skills and certificates.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("sg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="wrap">
+      <a href="index.html" class="logo"><i>SG</i><span>Samuel Godonu</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav id="menu" aria-label="Main">
+        <a href="index.html#work" data-for="work">Work</a>
+        <a href="simulation.html">Simulation</a>
+        <a href="index.html#experience" data-for="experience">Experience</a>
+        <a href="index.html#research" data-for="research">Research</a>
+        <a href="index.html#hackathons" data-for="hackathons">Achievements</a>
+        <a href="index.html#gallery" data-for="gallery">Gallery</a>
+        <a href="index.html#about" data-for="about">About</a>
+        <a href="summary.html">2-min summary</a>
+        <a class="btn small primary" href="index.html#contact">Contact</a>
+        <button class="theme-btn" data-theme-toggle type="button">Dark mode</button>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page">
+    <div class="wrap">
+      <div class="sum-head">
+        <div>
+          <a class="crumb no-print" href="index.html">← Back to the portfolio</a>
+          <h1 id="s-name" style="margin-bottom:.3rem">Samuel Godonu</h1>
+          <p class="summary" id="s-sub" style="margin:0"></p>
+          <p class="muted mono" id="s-contact" style="font-size:.9rem;margin:.6rem 0 0"></p>
+        </div>
+        <div class="linkrow no-print" style="margin:0">
+          <button class="btn primary" type="button" id="print-btn">Print or save as PDF</button>
+          <a class="btn" data-resume href="#" target="_blank" rel="noopener">Download CV</a>
+        </div>
+      </div>
+      <div class="sum-grid">
+        <div>
+          <h2>Summary</h2><div id="s-bio"></div>
+          <h2>Education</h2><div id="s-edu"></div>
+          <h2>Experience</h2><div id="s-exp"></div>
+          <h2>Leadership and memberships</h2><div id="s-lead"></div>
+          <h2>Featured projects</h2><div id="s-proj"></div>
+        </div>
+        <aside>
+          <h2>Skills</h2><div id="s-skills"></div>
+          <h2>Certificates and awards</h2><div id="s-awards"></div>
+          <h2>Find me</h2><div id="s-links"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer><div class="wrap"><span>© <span id="year"></span> Samuel Godonu</span><a href="index.html">Back to home</a></div></footer>
+  <script type="module" src="js/summary.js"></script>
+</body>
+</html>

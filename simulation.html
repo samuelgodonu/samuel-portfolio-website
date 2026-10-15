@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b2545">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <script>try{var t=localStorage.getItem("sg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
   <title>Temperature study explorer | Samuel Godonu</title>
   <meta name="description" content="Interactive explorer for an Aspen Plus sensitivity study of reactor outlet temperature in a simplified ethylene–isobutane to n-octane process.">
+  <meta property="og:title" content="Temperature study explorer | Samuel Godonu">
+  <meta property="og:description" content="Interactive explorer for an Aspen Plus sensitivity study of reactor outlet temperature in a simplified ethylene–isobutane to n-octane process.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("sg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav">
     <div class="wrap">
-      <a href="index.html" class="logo">Samuel<span>.</span>Godonu</a>
+      <a href="index.html" class="logo"><i>SG</i><span>Samuel Godonu</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
       <nav id="menu" aria-label="Main">
-        <a href="index.html#work">Work</a>
+        <a href="index.html#work" data-for="work">Work</a>
         <a href="simulation.html">Simulation</a>
-        <a href="index.html#research">Research</a>
-        <a href="index.html#hackathons">Hackathons</a>
-        <a href="index.html#gallery">Gallery</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#contact">Contact</a>
-        <button class="theme-btn" data-theme-toggle type="button">Light theme</button>
+        <a href="index.html#experience" data-for="experience">Experience</a>
+        <a href="index.html#research" data-for="research">Research</a>
+        <a href="index.html#hackathons" data-for="hackathons">Achievements</a>
+        <a href="index.html#gallery" data-for="gallery">Gallery</a>
+        <a href="index.html#about" data-for="about">About</a>
+        <a href="summary.html">2-min summary</a>
+        <a class="btn small primary" href="index.html#contact">Contact</a>
+        <button class="theme-btn" data-theme-toggle type="button">Dark mode</button>
       </nav>
     </div>
   </header>
@@ -73,6 +78,17 @@
           <a class="btn small" href="data/temperature-study.json" download>Download JSON</a>
         </div>
         <p class="muted" style="font-size:.9rem;margin:0">Sign convention: negative duty means heat removed from the stream (Aspen Plus convention).</p>
+      </section>
+
+      <section class="frame panel" style="margin-top:2rem" aria-labelledby="calc-h">
+        <h2 id="calc-h">Stoichiometry check</h2>
+        <p class="muted">For 2 C₂H₄ + C₄H₁₀ → C₈H₁₈, the most n-octane the feeds can make is whichever runs out first. With 100 kmol/h ethylene and 50 kmol/h isobutane both run out together, so the feed is exactly stoichiometric. Change the feeds to see the limit move.</p>
+        <div class="calc">
+          <label>Ethylene feed (kmol/h) <input id="c-eth" type="number" min="0" step="1" value="100"></label>
+          <label>Isobutane feed (kmol/h) <input id="c-iso" type="number" min="0" step="1" value="50"></label>
+        </div>
+        <dl class="readout" id="c-out" aria-live="polite"></dl>
+        <p class="muted" style="font-size:.9rem;margin:1rem 0 0">My own arithmetic, assuming the simplified reaction goes to completion. The Aspen comparison only appears for the base-case feeds, because that is the only case simulated.</p>
       </section>
 
       <section class="frame panel" style="margin-top:2rem" aria-labelledby="fs-h">

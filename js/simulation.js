@@ -1,27 +1,19 @@
-import { json } from './data.js';
+import { study, at as atFn, sgn } from './study.js';
 import { $, $$, esc } from './util.js';
 import { initShell } from './shell.js';
 
 initShell();
 
 (async function () {
-  const data = await json('temperature-study');
+  const data = await study();
   const T = data.temperatures, M = data.metrics;
   const by = k => M.find(m => m.key === k);
-  const fmt = (m, v) => v.toFixed(m.decimals);
-  const sgn = (m, v) => (v < 0 ? '−' : '') + Math.abs(v).toFixed(m.decimals); // proper minus sign
 
   const range = $('#t-range'), tval = $('#t-val'), badge = $('#t-badge');
   const sel = $('#metric-sel'), note = $('#chart-note');
   let temp = 100;
 
-  function at(m, t) {
-    if (t <= T[0]) return m.values[0];
-    if (t >= T[T.length - 1]) return m.values[m.values.length - 1];
-    let i = 0; while (t > T[i + 1]) i++;
-    const f = (t - T[i]) / (T[i + 1] - T[i]);
-    return m.values[i] + f * (m.values[i + 1] - m.values[i]);
-  }
+  const at = (m, t) => atFn(m, T, t);
   const isCase = t => T.includes(t);
 
   /* ---- case buttons + selector ---- */
@@ -97,6 +89,21 @@ initShell();
   range.addEventListener('input', () => { temp = Number(range.value); update(); });
   $('#case-btns').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { temp = Number(b.dataset.t); update(); } });
   sel.addEventListener('change', drawChart);
+
+  /* ---- stoichiometric yield check ---- */
+  const eIn = $('#c-eth'), iIn = $('#c-iso');
+  function calc() {
+    const E = Math.max(0, Number(eIn.value) || 0), I = Math.max(0, Number(iIn.value) || 0);
+    const fromE = E / 2, fromI = I, max = Math.min(fromE, fromI);
+    const limiting = fromE < fromI ? 'Ethylene' : fromE > fromI ? 'Isobutane' : 'Neither (stoichiometric feed)';
+    let html = `<div><dt>Limiting reactant</dt><dd><b>${limiting}</b></dd></div><div><dt>Stoichiometric maximum n-octane</dt><dd><b>${max.toFixed(2)}</b> kmol/h</dd></div>`;
+    if (E === 100 && I === 50) {
+      const o = by('octane').values[T.indexOf(100)];
+      html += `<div><dt>Simulated n-octane (Aspen, 100 °C)</dt><dd><b>${o.toFixed(2)}</b> kmol/h</dd></div><div><dt>Simulated as share of maximum</dt><dd><b>${(o / max * 100).toFixed(2)}</b> %</dd></div>`;
+    }
+    $('#c-out').innerHTML = html;
+  }
+  eIn.addEventListener('input', calc); iIn.addEventListener('input', calc); calc();
 
   /* ---- flowsheet ---- */
   const i100 = T.indexOf(100);
