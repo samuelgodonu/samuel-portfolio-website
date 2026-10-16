@@ -31,52 +31,31 @@
     "video": ""
   },
   {
-    "id": "pkreatif-designs",
-    "title": "P.kreatif Designs",
-    "summary": "A creative design practice I founded in 2020, producing graphics and visual identity work.",
-    "category": "3D Modeling",
+    "id": "mini-light-sensitive-buzzer",
+    "title": "Mini Light Sensitive Buzzer",
+    "summary": "An Arduino-based security circuit designed to detect motion or line-of-sight interruptions using a photoresistor (LDR) and a light source, such as a laser pointer. When the light beam hitting the photoresistor is broken or drops below a set threshold, the system triggers an audible alarm via a piezo buzzer.",
+    "category": "Electronics and embedded systems",
     "tags": [
-      "Graphic design",
-      "Founder"
+      "Arduino",
+      "LDRs",
+      "Embedded systems",
+      "Photoresistors",
+      "Piezo buzzers"
+      
     ],
-    "cover": "images/slide-flash.svg",
-    "date": "2020 – present",
-    "content": "P.kreatif Designs is the creative practice I started in September 2020. Design thinking sits alongside my engineering training: both are about understanding a problem before choosing a solution.\n\nAdd selected design work and case studies here from the dashboard.",
+    "cover": "images/LDR.png",
+    "date": "April, 2026.",
+    "content": "Real-Time Light Monitoring: Continuously measures light levels via analog input pin A0.\nConfigurable Sensitivity Threshold: Easily recalibrate the system to suit different room lighting conditions or laser intensities (default threshold set to 700).\nAudible Alert System: Emits a distinct 1000 Hz tone via digital pin 13 whenever the light beam is interrupted.\nSerial Calibration: Outputs real-time light level readings to the Serial Monitor at 9600 baud for straightforward setup and troubleshooting.",
     "results": [],
     "limitations": "",
     "github": "",
-    "demo": "https://sites.google.com/view/pkreatif-designs/home",
+    "demo": "https://www.tinkercad.com/things/7zloceDow6A-mini-basic-laser-security-system/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard",
     "files": [],
     "images": [],
     "featured": false,
     "order": 2,
     "published": true,
-    "role": "Founder and Creative Designer",
-    "video": ""
-  },
-  {
-    "id": "the-builders-circle",
-    "title": "The Builders Circle",
-    "summary": "A student-led community I co-founded in February 2026, where I serve as Assistant Project and Innovation Lead and Research and Insight Lead.",
-    "category": "Design and leadership",
-    "tags": [
-      "Co-founder",
-      "Leadership",
-      "Research"
-    ],
-    "cover": "images/slide-column.svg",
-    "date": "2026 – present",
-    "content": "I co-founded The Builders Circle in February 2026. My roles include Assistant Project and Innovation Lead and Research and Insight Lead.\n\nAdd the community's projects, events and outcomes here from the dashboard.",
-    "results": [],
-    "limitations": "",
-    "github": "",
-    "demo": "",
-    "files": [],
-    "images": [],
-    "featured": false,
-    "order": 3,
-    "published": true,
-    "role": "Co-founder",
+    "role": "Creator",
     "video": ""
   }
 ]

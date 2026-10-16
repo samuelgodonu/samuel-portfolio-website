@@ -118,7 +118,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 
 /* ============ Carousel ============ */
 .car-viewport { overflow: hidden; border-radius: 28px; box-shadow: var(--shadow); touch-action: pan-y; }
-.car-track { display: flex; transition: transform .7s cubic-bezier(.3,.7,.2,1); }
+.car-track { display: flex; transition: transform .9s cubic-bezier(.3,.7,.2,1); }
 .car-slide { position: relative; flex: 0 0 100%; aspect-ratio: 16 / 7; background: var(--soft); }
 .car-slide img { width: 100%; height: 100%; object-fit: cover; }
 .car-cap { position: absolute; inset: auto 0 0 0; padding: clamp(1.1rem, 3.5vw, 2.4rem); background: linear-gradient(to top, rgba(4,16,14,.88), rgba(4,16,14,0)); color: #f2f8f6; }

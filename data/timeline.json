@@ -37,7 +37,7 @@
     "type": "Leadership",
     "year": "2026",
     "period": "Jul 2026 – present",
-    "title": "Assistant Media and Communication Lead",
+    "title": "Media and Communication Lead",
     "org": "Network of Engineering Excellence",
     "description": "",
     "order": 4,
@@ -56,13 +56,68 @@
   },
   {
     "id": "t4",
-    "type": "Leadership",
+    "type": "Membership",
+    "year": "2025",
+    "period": "Dec 2025 – present",
+    "title": "Student member",
+    "org": "Society of Petroleum Engineers (SPE)",
+    "description": "Member of the PetroBowl Quiz",
+    "order": 6,
+    "published": true
+  },
+  {
+    "id": "t7",
+    "type": "Membership",
+    "year": "2026",
+    "period": "Sep 2026 – present",
+    "title": "Student Member",
+    "org": "Energy Institute Africa",
+    "description": "",
+    "order": 7,
+    "published": true
+  },
+  {
+    "id": "t8",
+    "type": "Membership",
     "year": "2026",
     "period": "Jan 2026 – present",
-    "title": "Student member",
-    "org": "AIChE, IChemE and IAENG",
-    "description": "Also a member of NSE, NSChE and SPE.",
-    "order": 6,
+    "title": "Student Member",
+    "org": "American Institue of Chemical Engineers (AIChE)",
+    "description": "",
+    "order": 8,
+    "published": true
+  },
+  {
+    "id": "t9",
+    "type": "Membership",
+    "year": "2026",
+    "period": "Jan 2026 – present",
+    "title": "Student Member",
+    "org": "International Association of Engineers (IAENG)",
+    "description": "",
+    "order": 9,
+    "published": true
+  },
+  {
+    "id": "t10",
+    "type": "Membership",
+    "year": "2026",
+    "period": "Feb 2026 – present",
+    "title": "Student Member",
+    "org": "The Nigerian Society of Engineers (NSE)",
+    "description": "",
+    "order": 10,
+    "published": true
+  },
+  {
+    "id": "t11",
+    "type": "Membership",
+    "year": "2026",
+    "period": "Sep 2026 – present",
+    "title": "Student Member",
+    "org": "The Nigerian Society of Chemical Engineers (NSChE)",
+    "description": "",
+    "order": 11,
     "published": true
   }
 ]

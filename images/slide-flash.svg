@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Placeholder: flash separator">
-<defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#8db4e2" stroke-opacity=".16"/></pattern></defs>
-<rect width="1600" height="900" fill="#0b2545"/><rect width="1600" height="900" fill="url(#g)"/>
-<g fill="none" stroke="#8db4e2" stroke-width="3" stroke-opacity=".9"><rect x="650" y="220" width="300" height="460" rx="110"/><path d="M650 520H950" stroke-dasharray="14 10"/><path d="M300 400H650M800 220V100H1150M800 680V800H1150" /><circle cx="1150" cy="100" r="16"/><circle cx="1150" cy="800" r="16"/></g>
-<text x="60" y="840" font-family="Arial,sans-serif" font-size="30" fill="#ffb703">Placeholder: flash separator</text></svg>
