@@ -63,16 +63,16 @@
     "published": true,
     "level": "Strong"
   },
-   {
-    "id": "k8",
+  {
+    "id": "k9",
     "name": "Onshape",
     "category": "Tools",
     "order": 9,
     "published": true,
     "level": "Working knowledge"
   },
-   {
-    "id": "k8",
+  {
+    "id": "k10",
     "name": "TinkerCAD",
     "category": "Tools",
     "order": 10,
@@ -80,15 +80,15 @@
     "level": "Working knowledge"
   },
   {
-    "id": "k8",
+    "id": "k11",
     "name": "Wokwi",
     "category": "Tools",
     "order": 11,
     "published": true,
     "level": "Working knowledge"
   },
-   {
-    "id": "k8",
+  {
+    "id": "k12",
     "name": "Adobe Photoshop",
     "category": "Tools",
     "order": 12,
@@ -96,19 +96,11 @@
     "level": "Strong"
   },
   {
-    "id": "k9",
+    "id": "k13",
     "name": "Graphic design",
     "category": "Design and leadership",
     "order": 13,
     "published": true,
     "level": "Strong"
-  },
-  {
-    "id": "k8",
-    "name": "TinkerCAD",
-    "category": "Videography",
-    "order": 14,
-    "published": true,
-    "level": "Working knowledge"
-  },
+  }
 ]
