@@ -2,5 +2,11 @@
   { "id": "g1", "image": "images/vhci.JPEG", "caption": "Placeholder: Visit to VHCI Lab", "album": "Events", "order": 1, "published": true },
   { "id": "g2", "image": "images/finalist.jpg", "caption": "Placeholder: Nexus 3.0 Hackathon", "album": "Hackathons", "order": 2, "published": true },
   { "id": "g3", "image": "images/art4.JPEG", "caption": "Placeholder: Unilag ART Grand Finale 2026.", "album": "Events", "order": 3, "published": true },
-  { "id": "g4", "image": "images/slide-flash.svg", "caption": "Placeholder: replace with a design work photo", "album": "Design", "order": 4, "published": true }
+  { "id": "g4", "image": "images/vhci2.JPEG", "caption": "Placeholder: Visit to VHCI Lab", "album": "Events", "order": 4, "published": true },
+  { "id": "g5", "image": "images/industrial.JPEG", "caption": "Placeholder: Industrial Exposure Series with Engr. Sylvester Agose", "album": "Events", "order": 5, "published": true },
+  { "id": "g6", "image": "images/saipec1.jpg", "caption": "Placeholder:SAIPEC 2026", "album": "Events", "order": 6, "published": true },
+  { "id": "g7", "image": "images/conf2.JPEG", "caption": "Placeholder: Acheievers Leadership Summit 2026.", "album": "Events", "order": 7, "published": true },
+  { "id": "g8", "image": "images/art2.jpg", "caption": "Placeholder: Unilag ART Grand Finale 2026.", "album": "Events", "order": 8, "published": true },
+  { "id": "g9", "image": "images/art4.JPEG", "caption": "Placeholder: replace with a design work photo", "album": "Events", "order": 9, "published": true },
+  { "id": "g10", "image": "images/vhci2.JPEG", "caption": "Placeholder: replace with a design work photo", "album": "Events", "order": 10, "published": true }
 ]
