@@ -289,7 +289,7 @@ function contact(settings) {
       } catch (err) { console.warn(err); }
     }
     btn.disabled = false;
-    if (ok) { form.reset(); status.textContent = 'Message sent. Thank you, I will reply by email.'; }
+    if (ok) { form.reset(); status.textContent = 'Message sent. Thank you, I will reply as soon as possible.'; }
     else { status.className = 'form-status err'; status.textContent = `The message could not be sent from here. Please email ${settings.email || 'me'} directly.`; }
   });
 }
