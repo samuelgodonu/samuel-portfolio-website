@@ -93,7 +93,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 .socialrow a { font-size: .92rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line-strong); }
 .socialrow a:hover { color: var(--accent); border-color: var(--accent); }
 
-.hero-visual { position: relative; perspective: 1000px; }
+.hero-visual { position: relative; perspective: 900px; }
 .portrait-card { position: relative; aspect-ratio: 4/5; border-radius: 32px; overflow: hidden; background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 22%, var(--soft)), var(--soft)); box-shadow: var(--shadow); transition: transform .2s ease-out; transform-style: preserve-3d; display: grid; place-items: center; }
 .portrait-card img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
 .portrait-card .ph { text-align: center; padding: 1.5rem; }
@@ -106,12 +106,12 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 
 /* ============ Marquee ============ */
 .marq { padding-block: 1.4rem; border-block: 1px solid var(--line); overflow: hidden; background: var(--surface); }
-.marq-lab { font-size: .82rem; color: var(--muted); text-align: center; margin-bottom: .7rem; }
+.marq-lab { font-size: .99rem; color: var(--muted); text-align: center; margin-bottom: .7rem; }
 .marq-track { display: flex; align-items: center; width: max-content; gap: 3rem; animation: slide var(--dur, 54s) linear infinite; }
 .marq:hover .marq-track { animation-play-state: paused; }
 .soc { display: inline-flex; align-items: center; gap: .8rem; white-space: nowrap; }
 .soc-logo { width: 3.6rem; height: 3.6rem; flex: none; border-radius: 50%; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); display: grid; place-items: center; }
-.soc-logo img { width: 100%; height: 100%; object-fit: contain; padding: .45rem; } /* change to "cover" to fill the circle */
+.soc-logo img { width: 300%; height: 300%; object-fit: contain; padding: .45rem; } /* change to "cover" to fill the circle */
 .soc-logo b { font: 800 .85rem var(--font-head); color: #0c1f1c; letter-spacing: -.02em; }
 .soc > span:last-child { font: 700 1.1rem var(--font-head); color: var(--ink); }
 @keyframes slide { to { transform: translateX(-50%); } }

@@ -2,11 +2,11 @@
   {
     "id": "h1",
     "name": "NEXUS 3.0 Hackathon",
-    "date": "",
-    "role": "Participant",
+    "date": "May, 2026.",
+    "role": "Finalist",
     "result": "Certificate of Excellence",
-    "description": "Add the challenge, your team, what you built and what you learned from the dashboard.",
-    "image": "",
+    "description": "Naira Power is a personalized energy audit web app that helps Nigerian residents reduce their electricity bills by auditing appliance usage, detecting power waste, providing actionable savings plans, and comparing costs across grid and alternative energy sources.",
+    "image": "images/finalist.jpg",
     "link": "",
     "order": 1,
     "published": true

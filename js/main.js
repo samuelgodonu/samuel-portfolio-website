@@ -120,7 +120,7 @@ function carousel(slides) {
     dots.forEach((d, i) => d.setAttribute('aria-current', String(i === idx)));
   };
   const stop = () => { clearInterval(timer); timer = null; };
-  const start = () => { stop(); if (!reduce && !hovering && slides.length > 1) timer = setInterval(() => go(idx + 1), 5000); };
+  const start = () => { stop(); if (!reduce && !hovering && slides.length > 1) timer = setInterval(() => go(idx + 1), 2000); };
   root.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) { go(Number(b.dataset.i)); start(); } });
   root.addEventListener('mouseenter', () => { hovering = true; stop(); });
   root.addEventListener('mouseleave', () => { hovering = false; start(); });

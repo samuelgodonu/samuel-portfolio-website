@@ -10,8 +10,8 @@
       "Recycle and purge",
       "RadFrac"
     ],
-    "cover": "images/slide-reactor.svg",
-    "date": "2026",
+    "cover": "images/flowsheet.png",
+    "date": "October, 2026.",
     "content": "I built this model to practise how separate pieces of equipment behave together in a plant. Fresh ethylene (100 kmol/h) and isobutane (50 kmol/h) are mixed with the recycle stream, heated, and sent to an RStoic reactor operating at 10 bar. The reactor effluent is cooled and flashed at 20 °C and 10 bar. The liquid goes to a 15-stage RadFrac column (feed on stage 3); the overhead is split 95% recycle and 5% purge, and the bottoms is the n-octane product.\n\nThe reaction is the simplified stoichiometry 2 C2H4 + C4H10 → C8H18, with an ethylene conversion of 80% specified in the reactor block. Property method: Peng–Robinson.",
     "results": [
       "n-octane product of about 49.74 kmol/h at the base case.",
@@ -27,14 +27,14 @@
     "featured": true,
     "order": 1,
     "published": true,
-    "role": "Process modelling and analysis",
+    "role": "Process Simulation",
     "video": ""
   },
   {
     "id": "pkreatif-designs",
     "title": "P.kreatif Designs",
     "summary": "A creative design practice I founded in 2020, producing graphics and visual identity work.",
-    "category": "Design and leadership",
+    "category": "3D Modeling",
     "tags": [
       "Graphic design",
       "Founder"

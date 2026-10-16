@@ -1,7 +1,7 @@
 [
   {
     "id": "k1",
-    "name": "Aspen Plus V11",
+    "name": "Aspen Plus",
     "category": "Process engineering",
     "order": 1,
     "published": true,
@@ -9,7 +9,7 @@
   },
   {
     "id": "k2",
-    "name": "Peng–Robinson property method",
+    "name": "Aspen HYSYS",
     "category": "Process engineering",
     "order": 2,
     "published": true,
@@ -63,36 +63,52 @@
     "published": true,
     "level": "Strong"
   },
-  {
-    "id": "k9",
-    "name": "Graphic design",
-    "category": "Design and leadership",
+   {
+    "id": "k8",
+    "name": "Onshape",
+    "category": "Tools",
     "order": 9,
     "published": true,
-    "level": "Strong"
+    "level": "Working knowledge"
   },
-  {
-    "id": "k10",
-    "name": "Organizational leadership",
-    "category": "Design and leadership",
+   {
+    "id": "k8",
+    "name": "TinkerCAD",
+    "category": "Tools",
     "order": 10,
     "published": true,
     "level": "Working knowledge"
   },
   {
-    "id": "k11",
-    "name": "Design thinking",
-    "category": "Design and leadership",
+    "id": "k8",
+    "name": "Wokwi",
+    "category": "Tools",
     "order": 11,
     "published": true,
     "level": "Working knowledge"
   },
-  {
-    "id": "k12",
-    "name": "Critical thinking",
-    "category": "Design and leadership",
+   {
+    "id": "k8",
+    "name": "Adobe Photoshop",
+    "category": "Tools",
     "order": 12,
     "published": true,
+    "level": "Strong"
+  },
+  {
+    "id": "k9",
+    "name": "Graphic design",
+    "category": "Design and leadership",
+    "order": 13,
+    "published": true,
+    "level": "Strong"
+  },
+  {
+    "id": "k8",
+    "name": "TinkerCAD",
+    "category": "Videography",
+    "order": 14,
+    "published": true,
     "level": "Working knowledge"
-  }
+  },
 ]
