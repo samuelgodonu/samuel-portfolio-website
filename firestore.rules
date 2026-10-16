@@ -4,7 +4,7 @@ service cloud.firestore {
 
     // Replace with YOUR user ID (Firebase console > Authentication > Users > User UID)
     function isAdmin() {
-      return request.auth != null && request.auth.uid == 'PASTE_YOUR_ADMIN_UID_HERE';
+      return request.auth != null && request.auth.uid == 'jnNsdRpKythUnPes7fh3c13upfg2';
     }
 
     // Visitors can send a message, but only the admin can read or manage them.
