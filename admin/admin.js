@@ -103,6 +103,7 @@ const SETTINGS_FIELDS = [
   { k: 'kicker', l: 'Line above your name', t: 'text' },
   { k: 'status', l: 'Status chip', t: 'text', help: 'e.g. Open to internships' },
   { k: 'roles', l: 'Rotating focus areas', t: 'text', help: 'Comma separated' },
+  { k: 'carouselSeconds', l: 'Carousel speed', t: 'number', help: 'Seconds each slide stays, from 2 to 30' },
   { k: 'upcoming', l: 'Upcoming project fields', t: 'text', help: 'Comma separated. Shown as "coming soon" under Work' },
   { k: 'headline', l: 'Homepage headline sentence', t: 'text' },
   { k: 'bio', l: 'Short bio', t: 'textarea', rows: 3 },
@@ -120,7 +121,7 @@ const SETTINGS_FIELDS = [
 ];
 
 /* ================= State ================= */
-let fb = null, kit = null, user = null, tab = 'overview';
+let fb = null, kit = null, user = null, tab = 'overview', seedErr = '';
 const view = $('#view');
 const show = id => ['setup', 'login', 'app'].forEach(x => ($('#' + x).hidden = x !== id));
 
@@ -142,9 +143,14 @@ async function fetchAll(n) {
   if (!firebaseEnabled) return show('setup');
   fb = await getFirebase(); kit = await getAuthKit();
   if (!fb || !kit) { show('setup'); return; }
-  kit.mod.onAuthStateChanged(kit.auth, u => {
+  kit.mod.onAuthStateChanged(kit.auth, async u => {
     user = u;
-    if (u) { show('app'); drawTabs(); render(); } else show('login');
+    if (u) {
+      show('app'); drawTabs();
+      view.innerHTML = '<p class="muted">Loading your content…</p>';
+      await autoSeed();
+      render();
+    } else show('login');
   });
 })();
 
@@ -189,7 +195,7 @@ async function renderOverview() {
   view.innerHTML = `
     <div class="bar"><h1>Overview</h1><a class="btn" href="../index.html" target="_blank" rel="noopener">View website</a></div>
     ${seeded ? '' : `<div class="note"><h3>Your website is still reading the local files</h3>
-      <p>Import the starter content once. After that, everything you edit here appears on the live site.</p>
+      <p>${seedErr ? esc(seedErr) : 'Import the starter content once. After that, everything you edit here appears on the live site.'}</p>
       <button class="btn primary" id="seed-btn" type="button">Import starter content</button></div>`}
     <div class="stat">${counts.map(([k, n]) => `<div><b>${n}</b><span>${esc(COLS[k].label)}</span></div>`).join('')}<div><b>${unread}</b><span>Unread messages</span></div></div>
     <h2 style="font-size:1.2rem;margin-bottom:.6rem">Your user ID</h2>
@@ -199,17 +205,38 @@ async function renderOverview() {
   $('#seed-btn')?.addEventListener('click', seed);
 }
 
+// Copies the content of the /data folder into the database (no questions asked).
+async function seedNow() {
+  const batch = fb.fs.writeBatch(fb.db);
+  for (const k of Object.keys(COLS)) {
+    const items = await json(k);
+    items.forEach(it => { const { id, ...rest } = it; batch.set(fb.fs.doc(fb.db, k, id), rest); });
+  }
+  batch.set(fb.fs.doc(fb.db, 'settings', 'site'), await json('settings'));
+  batch.set(fb.fs.doc(fb.db, 'meta', 'state'), { seeded: true, at: fb.fs.serverTimestamp() });
+  await batch.commit();
+}
+
+// First sign-in: if the database is still empty, bring your current site content in automatically.
+async function autoSeed() {
+  seedErr = '';
+  try {
+    const state = await fb.fs.getDoc(fb.fs.doc(fb.db, 'meta', 'state')).catch(() => null);
+    if (state?.exists() && state.data().seeded) return;
+    await seedNow();
+    toast('Your current site content is now in the dashboard. You can edit, delete or add items.');
+  } catch (e) {
+    console.error(e);
+    seedErr = e?.code === 'permission-denied'
+      ? 'The database refused the import. Put your user ID (shown below) into firestore.rules, publish the rules in Firebase (Firestore Database > Rules), wait a minute, then press the button.'
+      : `The import did not finish: ${e?.message || 'unknown error'}. Press the button to try again.`;
+  }
+}
+
 async function seed() {
   if (!confirm('Copy the starter content from the data folder into your database? Items with the same ID will be overwritten.')) return;
   try {
-    const batch = fb.fs.writeBatch(fb.db);
-    for (const k of Object.keys(COLS)) {
-      const items = await json(k);
-      items.forEach(it => { const { id, ...rest } = it; batch.set(fb.fs.doc(fb.db, k, id), rest); });
-    }
-    batch.set(fb.fs.doc(fb.db, 'settings', 'site'), await json('settings'));
-    batch.set(fb.fs.doc(fb.db, 'meta', 'state'), { seeded: true, at: fb.fs.serverTimestamp() });
-    await batch.commit();
+    await seedNow();
     toast('Starter content imported. Your site now reads from the database.');
     render();
   } catch (e) { fail(e); }
