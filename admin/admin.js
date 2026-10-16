@@ -199,8 +199,7 @@ async function renderOverview() {
       <button class="btn primary" id="seed-btn" type="button">Import starter content</button></div>`}
     <div class="stat">${counts.map(([k, n]) => `<div><b>${n}</b><span>${esc(COLS[k].label)}</span></div>`).join('')}<div><b>${unread}</b><span>Unread messages</span></div></div>
     <h2 style="font-size:1.2rem;margin-bottom:.6rem">Your user ID</h2>
-    <p class="muted">Paste this into <code>firestore.rules</code> where it says PASTE_YOUR_ADMIN_UID_HERE, then publish the rules. This is what stops anyone else from editing your site.</p>
-    <p class="uid">${esc(user.uid)}</p>
+        <p class="uid">${esc(user.uid)}</p>
     ${seeded ? `<p style="margin-top:2rem"><button class="btn small" id="seed-btn" type="button">Re-import starter content</button> <span class="muted">Overwrites items that have the same ID.</span></p>` : ''}`;
   $('#seed-btn')?.addEventListener('click', seed);
 }
