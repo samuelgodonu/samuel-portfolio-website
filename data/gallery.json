@@ -1,6 +1,6 @@
 [
   { "id": "g1", "image": "images/vhci.JPEG", "caption": "Placeholder: Visit to VHCI Lab", "album": "Events", "order": 1, "published": true },
   { "id": "g2", "image": "images/finalist.jpg", "caption": "Placeholder: Nexus 3.0 Hackathon", "album": "Hackathons", "order": 2, "published": true },
-  { "id": "g3", "image": "images/slide-column.svg", "caption": "Placeholder: replace with a field-trip photo", "album": "Events", "order": 3, "published": true },
+  { "id": "g3", "image": "images/art4.JPEG", "caption": "Placeholder: Unilag ART Grand Finale 2026.", "album": "Events", "order": 3, "published": true },
   { "id": "g4", "image": "images/slide-flash.svg", "caption": "Placeholder: replace with a design work photo", "album": "Design", "order": 4, "published": true }
 ]
