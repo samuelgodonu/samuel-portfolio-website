@@ -17,8 +17,8 @@ export const firebaseConfig = {
 
 // Cloudinary > Settings > Upload > Upload presets > Add preset (Signing mode: Unsigned)
 export const cloudinary = {
-  cloudName: "",
-  uploadPreset: ""
+  cloudName: "senxztcj",
+  uploadPreset: "portfolio"
 };
 
 export const firebaseEnabled = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
